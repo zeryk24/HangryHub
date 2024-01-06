@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="5.21.2" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HangryHub.RestaurantService.Application\HangryHub.RestaurantService.Application.csproj" />
+    <ProjectReference Include="..\HangryHub.RestaurantService.Contracts\HangryHub.RestaurantService.Contracts.csproj" />
+    <ProjectReference Include="..\HangryHub.RestaurantService.Domain\HangryHub.RestaurantService.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

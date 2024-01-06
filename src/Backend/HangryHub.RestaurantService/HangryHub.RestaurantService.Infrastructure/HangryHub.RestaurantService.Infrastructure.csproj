@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HangryHub.RestaurantService.Application\HangryHub.RestaurantService.Application.csproj" />
+    <ProjectReference Include="..\HangryHub.RestaurantService.Domain\HangryHub.RestaurantService.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
