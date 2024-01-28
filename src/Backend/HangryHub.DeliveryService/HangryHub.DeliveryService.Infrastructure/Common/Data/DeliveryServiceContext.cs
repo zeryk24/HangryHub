@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities;
+using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
+using HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects;
+using Microsoft.EntityFrameworkCore;
 
 namespace HangryHub.DeliveryService.Infrastructure.Common.Data
 {
@@ -38,14 +41,20 @@ namespace HangryHub.DeliveryService.Infrastructure.Common.Data
             freelencer.OwnsOne(x => x.Contact);
         
 
-            delivery.OwnsOne(x => x.Order);
+            var order = delivery.OwnsOne(x => x.Order);
+            order.OwnsOne(x => x.Id);
 
             var restaurant = delivery.OwnsOne(x => x.Restaurant);
             restaurant.OwnsOne(x => x.Location);
             restaurant.OwnsOne(x => x.Contact);
+            restaurant.OwnsOne(x => x.Id);
 
- 
 
+         
         }
+        
+       
+
+
     }
 }

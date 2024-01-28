@@ -34,13 +34,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// todo: refactor somewhere else?
+//// todo: refactor somewhere else?
 using var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetService<DeliveryServiceContext>();
-if (context != null)
-{
-    context.Database.Migrate();
-}
-
+InfrastructureInstaller.ConfigureInfrastructure(context, app.Environment.IsDevelopment());
 
 app.Run();

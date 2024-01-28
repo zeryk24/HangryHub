@@ -1,6 +1,9 @@
 ﻿using HangryHub.DeliveryService.Application.Common;
 using HangryHub.DeliveryService.Application.Delivery.ListAvaiable;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate;
+using HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities;
+using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
+using HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects;
 using HangryHub.DeliveryService.Infrastructure.Common.Data;
 using HangryHub.DeliveryService.Infrastructure.Delivery.Data.QueryService;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +27,44 @@ namespace HangryHub.DeliveryService.Infrastructure
 
 
 
+        }
+
+        public static void ConfigureInfrastructure(DeliveryServiceContext? context, bool isDeveloplment)
+        {
+            if (context == null) return;
+
+            if (isDeveloplment) context.Database.EnsureDeleted();
+
+            context.Database.Migrate();
+
+            if (isDeveloplment)
+            {
+                context.Add(
+                            new Domain.DeliveryAggregate.Delivery(
+                            Guid.NewGuid(),
+                            new Restaurant(
+                                new RestaurantId(Guid.NewGuid()),
+                                new RestaurantContact("777666777", "777666445"),
+                                new RestaurantLocation("Ulice 1", "Az v druhem patre!")
+                            ),
+                            new Order(
+                                new OrderId(Guid.NewGuid())
+                            ),
+                            new Customer(
+                                new CustomerId(Guid.NewGuid()),
+                                new CustomerContact("555666555", "777888555"),
+                                new CustomerDeliveryLocation("Daleka ulice 35", "Nechte jidlo pred domem", Domain.DeliveryAggregate.Enums.CustomerLocationType.Home)
+                            ),
+                            new Freelencer(
+                                new FreelencerId(Guid.NewGuid()),
+                                TransportType.Bike,
+                                new FreelencerContact("33322233", "444555878")
+                            ),
+                            DeliveryState.NotAsigned)
+
+                    );
+                context.SaveChanges();
+            }
         }
     
     }
