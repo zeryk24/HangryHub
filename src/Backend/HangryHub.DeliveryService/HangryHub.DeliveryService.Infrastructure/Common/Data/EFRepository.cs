@@ -1,8 +1,6 @@
-﻿
+﻿using HangryHub.DeliveryService.Application.Common;
 
-using HangryHub.DeliveryService.Application.Common;
-
-namespace HangryHub.DeliveryService.Infrastructure.Data.Common
+namespace HangryHub.DeliveryService.Infrastructure.Common.Data
 {
     class EFRepository<TAggregate> : IRepository<TAggregate> where TAggregate : class
     {

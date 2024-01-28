@@ -8,6 +8,7 @@ namespace HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums
 {
     public enum DeliveryState
     {
+        NotAsigned,
         WaitingForPickup,
         OnTheWay,
         Finished
