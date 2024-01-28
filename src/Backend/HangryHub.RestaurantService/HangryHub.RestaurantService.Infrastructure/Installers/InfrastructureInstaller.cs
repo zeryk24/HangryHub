@@ -6,7 +6,7 @@ namespace HangryHub.RestaurantService.Infrastructure.Installers;
 
 public static class InfrastructureInstaller
 {
-    public static void InstallInfrastructure(this IServiceCollection services, string connectionString)
+    public static void InstallInfrastructure(this IServiceCollection services)
     {
         services.AddDbContext<RestaurantServiceDbContext>();
 
