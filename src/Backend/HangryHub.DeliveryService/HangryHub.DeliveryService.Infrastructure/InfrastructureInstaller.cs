@@ -1,9 +1,8 @@
 ﻿using HangryHub.DeliveryService.Application.Common;
-using HangryHub.DeliveryService.Domain.Delivery;
+using HangryHub.DeliveryService.Domain.DeliveryAggregate;
 using HangryHub.DeliveryService.Infrastructure.Data.Common;
 
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace HangryHub.DeliveryService.Infrastructure
 {

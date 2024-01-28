@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HangryHub.DeliveryService.Domain.Common
 {
-    public abstract class AggregateRoot
+    public abstract class AggregateRoot : Entity
     {
         public Guid Id { get; set; }
 
