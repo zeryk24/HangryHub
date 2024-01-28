@@ -24,10 +24,6 @@ namespace HangryHub.DeliveryService.Delivery.Controllers
             return mediator.Send(new ListAvaiableQuery());
         }
 
-        [HttpGet]
-        public Task<DeliveryDTO> Get()
-        {
-            return mediator.Send(new GetDeliveryQuery(Guid.Empty));
-        }
+ 
     }
 }
