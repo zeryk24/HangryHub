@@ -10,7 +10,7 @@ namespace HangryHub.OderService.UseCases.Order.GetById
         {
             var order = getOrderByIdService.GetOrderById(request.Id);
             
-            return new OrderDTO(new PriceDTO(order.PriceEuro.Euro));
+            return new OrderDTO(order.Id, new PriceDTO(order.PriceEuro.Euro));
         }
     }
 }

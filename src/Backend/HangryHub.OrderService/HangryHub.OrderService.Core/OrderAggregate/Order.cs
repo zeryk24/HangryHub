@@ -11,5 +11,7 @@ namespace HangryHub.OrderService.Core.OrderAggregate
         {
             PriceEuro = euro;
         }
+
+        private Order() : base(Guid.Empty) { }
     }
 }
