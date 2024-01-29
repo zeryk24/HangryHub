@@ -1,4 +1,5 @@
 using FastEndpoints;
+using FastEndpoints.Swagger;
 using HangryHub.RestaurantService.Presentation.Common.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,7 @@ public class PresentationInstaller
         // Add services to the container.
         options.Invoke(builder.Services);
 
-        builder.Services.AddFastEndpoints();
+        builder.Services.AddFastEndpoints().SwaggerDocument();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
@@ -35,7 +36,7 @@ public class PresentationInstaller
 
         app.UseHttpsRedirection();
 
-        app.UseFastEndpoints();
+        app.UseFastEndpoints().UseSwaggerGen();
 
         return app.RunAsync();
     }
