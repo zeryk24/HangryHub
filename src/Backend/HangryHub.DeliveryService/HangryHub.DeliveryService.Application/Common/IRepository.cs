@@ -15,5 +15,7 @@ namespace HangryHub.DeliveryService.Application.Common
         Task<bool> RemoveAsync(object id);
 
         void Update(TAggregate entity);
+
+        void SaveChanges();
     }
 }

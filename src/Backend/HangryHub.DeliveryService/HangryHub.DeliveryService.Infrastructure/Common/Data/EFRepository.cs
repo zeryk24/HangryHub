@@ -4,24 +4,42 @@ namespace HangryHub.DeliveryService.Infrastructure.Common.Data
 {
     class EFRepository<TAggregate> : IRepository<TAggregate> where TAggregate : class
     {
-        public Task<TAggregate?> GetByIdAsync(object id)
+        protected DeliveryServiceContext Context;
+        public EFRepository(DeliveryServiceContext context)
         {
-            return Task.FromResult<TAggregate?>(null);
+            Context = context;
+        }   
+        public async Task<TAggregate?> GetByIdAsync(object id)
+        {
+            var result = await Context.Set<TAggregate>().FindAsync(id);
+
+            return result;
         }
 
         public void Insert(TAggregate entity)
         {
-            throw new NotImplementedException();
+            Context.Set<TAggregate>().Add(entity);
         }
 
-        public Task<bool> RemoveAsync(object id)
+        public async Task<bool> RemoveAsync(object id)
         {
-            throw new NotImplementedException();
+            var entity = await Context.Set<TAggregate>().FindAsync(id);
+            if (entity == null)
+            {
+                return false;
+            }
+            Context.Set<TAggregate>().Remove(entity);
+            return true;
         }
 
         public void Update(TAggregate entity)
         {
-            throw new NotImplementedException();
+            Context.Set<TAggregate>().Update(entity);
         }
+
+        public void SaveChanges()
+        {
+            Context.SaveChanges();
+        }   
     }
 }

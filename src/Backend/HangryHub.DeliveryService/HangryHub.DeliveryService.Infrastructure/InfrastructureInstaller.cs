@@ -19,7 +19,13 @@ namespace HangryHub.DeliveryService.Infrastructure
             // TODO: temporary, refactor!
 
             string connection_string = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=HangryHub.DeliveryService;";
-            services.AddDbContext<DeliveryServiceContext>(options => options.UseSqlServer(connection_string));
+            services.AddDbContext<DeliveryServiceContext>((options) =>
+            {
+
+                options.UseSqlServer(connection_string);
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            }
+            );
             
             
             services.AddTransient<IRepository<Domain.DeliveryAggregate.Delivery>, EFRepository<Domain.DeliveryAggregate.Delivery>>();
@@ -55,11 +61,7 @@ namespace HangryHub.DeliveryService.Infrastructure
                                 new CustomerContact("555666555", "777888555"),
                                 new CustomerDeliveryLocation("Daleka ulice 35", "Nechte jidlo pred domem", Domain.DeliveryAggregate.Enums.CustomerLocationType.Home)
                             ),
-                            new Freelencer(
-                                new FreelencerId(Guid.NewGuid()),
-                                TransportType.Bike,
-                                new FreelencerContact("33322233", "444555878")
-                            ),
+                            null,
                             DeliveryState.NotAsigned)
 
                     );

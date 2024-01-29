@@ -1,6 +1,7 @@
 ﻿using HangryHub.DeliveryService.Application.Delivery;
 using HangryHub.DeliveryService.Application.Delivery.Get;
 using HangryHub.DeliveryService.Application.Delivery.ListAvaiable;
+using HangryHub.DeliveryService.Application.Delivery.Select;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,13 @@ namespace HangryHub.DeliveryService.Delivery.Controllers
             return mediator.Send(new ListAvaiableQuery());
         }
 
- 
+
+        [HttpPost("Select")]
+        public Task<bool> SelectDelivery(Guid delivery, Guid freelencer)
+        {
+            return mediator.Send(new SelectDeliveryCommand(delivery,freelencer));
+        }
+
+
     }
 }
