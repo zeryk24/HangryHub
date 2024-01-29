@@ -1,7 +1,7 @@
 ﻿using HangryHub.RestaurantService.Domain.Common.Models;
-using HangryHub.RestaurantService.Domain.Restaurant.Entities.IngredientEntity.ValueObjects;
+using HangryHub.RestaurantService.Domain.RestaurantAggregate.Entities.IngredientEntity.ValueObjects;
 
-namespace HangryHub.RestaurantService.Domain.Restaurant.Entities.IngredientEntity;
+namespace HangryHub.RestaurantService.Domain.RestaurantAggregate.Entities.IngredientEntity;
 
 public class Ingredient : Entity<IngredientId>
 {

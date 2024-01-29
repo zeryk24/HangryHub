@@ -1,8 +1,8 @@
 ﻿using HangryHub.RestaurantService.Domain.Common.Models;
-using HangryHub.RestaurantService.Domain.Restaurant.Entities.MenuItemEntity;
-using HangryHub.RestaurantService.Domain.Restaurant.ValueObjects;
+using HangryHub.RestaurantService.Domain.RestaurantAggregate.Entities.MenuItemEntity;
+using HangryHub.RestaurantService.Domain.RestaurantAggregate.ValueObjects;
 
-namespace HangryHub.RestaurantService.Domain.Restaurant;
+namespace HangryHub.RestaurantService.Domain.RestaurantAggregate;
 
 public sealed class Restaurant : AggregateRoot<RestaurantId>
 {

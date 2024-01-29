@@ -1,6 +1,6 @@
 ﻿using HangryHub.RestaurantService.Domain.Common.Models;
 
-namespace HangryHub.RestaurantService.Domain.Restaurant.Entities.MenuItemEntity.ValueObjects;
+namespace HangryHub.RestaurantService.Domain.RestaurantAggregate.Entities.MenuItemEntity.ValueObjects;
 
 public class MenuItemName : ValueObject
 {

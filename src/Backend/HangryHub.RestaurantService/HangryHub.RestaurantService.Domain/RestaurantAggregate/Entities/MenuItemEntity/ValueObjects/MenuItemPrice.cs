@@ -1,6 +1,6 @@
 ﻿using HangryHub.RestaurantService.Domain.Common.Models;
 
-namespace HangryHub.RestaurantService.Domain.Restaurant.Entities.MenuItemEntity.ValueObjects;
+namespace HangryHub.RestaurantService.Domain.RestaurantAggregate.Entities.MenuItemEntity.ValueObjects;
 
 public class MenuItemPrice : ValueObject
 {
@@ -8,12 +8,12 @@ public class MenuItemPrice : ValueObject
 
     private MenuItemPrice() { }
 
-    private MenuItemPrice(decimal value)
+    private MenuItemPrice(decimal czk)
     {
-        Czk = value;
+        Czk = czk;
     }
 
-    public static MenuItemPrice Create(decimal value) => new MenuItemPrice(value);
+    public static MenuItemPrice Create(decimal czk) => new MenuItemPrice(czk);
 
     protected override IEnumerable<object?> GetEqualityComponents()
     {

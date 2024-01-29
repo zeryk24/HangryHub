@@ -1,6 +1,6 @@
 ﻿using HangryHub.RestaurantService.Domain.Common.Models;
 
-namespace HangryHub.RestaurantService.Domain.Restaurant.ValueObjects;
+namespace HangryHub.RestaurantService.Domain.RestaurantAggregate.ValueObjects;
 
 public class RestaurantName : ValueObject
 {

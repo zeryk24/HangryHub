@@ -1,7 +1,7 @@
-﻿using HangryHub.RestaurantService.Domain.Restaurant;
-using HangryHub.RestaurantService.Domain.Restaurant.Entities.IngredientEntity.ValueObjects;
-using HangryHub.RestaurantService.Domain.Restaurant.Entities.MenuItemEntity.ValueObjects;
-using HangryHub.RestaurantService.Domain.Restaurant.ValueObjects;
+﻿using HangryHub.RestaurantService.Domain.RestaurantAggregate;
+using HangryHub.RestaurantService.Domain.RestaurantAggregate.Entities.IngredientEntity.ValueObjects;
+using HangryHub.RestaurantService.Domain.RestaurantAggregate.Entities.MenuItemEntity.ValueObjects;
+using HangryHub.RestaurantService.Domain.RestaurantAggregate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

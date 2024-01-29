@@ -1,4 +1,4 @@
-﻿using HangryHub.RestaurantService.Domain.Restaurant;
+﻿using HangryHub.RestaurantService.Domain.RestaurantAggregate;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
