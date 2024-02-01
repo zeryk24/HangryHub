@@ -3,6 +3,7 @@ using HangryHub.OderService.UseCases.Order.Accept;
 using HangryHub.OderService.UseCases.Order.Create;
 using HangryHub.OderService.UseCases.Order.Decline;
 using HangryHub.OderService.UseCases.Order.GetById;
+using HangryHub.OderService.UseCases.Order.Ready;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,6 +47,17 @@ namespace HangryHub.OrderService.API.Controllers
         public async Task<ActionResult<OrderDTO>> Decline(Guid id)
         {
             var orderResult = await mediator.Send(new DeclineOrderCommand(id));
+            if (orderResult.IsError)
+            {
+                return NotFound();
+            }
+            return Ok(orderResult.Value);
+        }
+
+        [HttpPut("Ready")]
+        public async Task<ActionResult<OrderDTO>> Ready(Guid id)
+        {
+            var orderResult = await mediator.Send(new ReadyOrderCommand(id));
             if (orderResult.IsError)
             {
                 return NotFound();

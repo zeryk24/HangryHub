@@ -20,6 +20,7 @@ namespace HangryHub.OrderService.Infrastructure.Data
             var price = order.OwnsOne(o => o.PriceEuro);
             var accept = order.OwnsOne(o => o.OrderAccepted);
             var decline = order.OwnsOne(o => o.OrderDeclined);
+            var ready = order.OwnsOne(o => o.OrderReady);
         }
     }
 }

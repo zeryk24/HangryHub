@@ -15,7 +15,8 @@ namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
         {
             var orderAggregate = new Core.OrderAggregate.Order(new Core.OrderAggregate.ValueObjects.Price(euroPrice),
                 new Core.OrderAggregate.ValueObjects.Accept(false, null),
-                new Core.OrderAggregate.ValueObjects.Decline(false, null));
+                new Core.OrderAggregate.ValueObjects.Decline(false, null),
+                new Core.OrderAggregate.ValueObjects.Ready(false, null));
             await OrderRepository.CreateAsync(orderAggregate);
             await OrderRepository.SaveAsync();
             return orderAggregate;
