@@ -18,7 +18,7 @@ namespace HangryHub.OrderService.Infrastructure.Data
             order.HasKey(o => o.Id);
 
             var price = order.OwnsOne(o => o.PriceEuro);
-            
+            var accept = order.OwnsOne(o => o.OrderAccepted);
         }
     }
 }

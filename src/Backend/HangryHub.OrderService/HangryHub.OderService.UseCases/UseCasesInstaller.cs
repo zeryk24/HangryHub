@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace HangryHub.OderService.UseCases
 {
-    public static class ApplicationInstaller
+    public static class UseCasesInstaller
     {
         public static void InstallApplication(this IServiceCollection services)
         {

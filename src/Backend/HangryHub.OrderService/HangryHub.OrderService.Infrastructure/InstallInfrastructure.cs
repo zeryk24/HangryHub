@@ -13,11 +13,11 @@ namespace HangryHub.OrderService.Infrastructure
             string connection_string = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=HangryHub.OrderService;";
             services.AddDbContext<OrderServiceContext>(options => options.UseSqlServer(connection_string));
 
-            //services.AddTransient(typeof(IRepository<Core.OrderAggregate.Order>), typeof(EFRepository<Core.OrderAggregate.Order>));
             services.AddTransient<DbContext, OrderServiceContext>();
             services.AddTransient<IRepository<Core.OrderAggregate.Order>, EFRepository<Core.OrderAggregate.Order>>();
             services.AddTransient<IGetOrderByIdService, GetOrderByIdService>();
             services.AddTransient<ICreateOrderService, CreateOrderService>();
+            services.AddTransient<IAcceptOrderService, AcceptOrderService>();
         }
     }
 }

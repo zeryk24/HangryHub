@@ -4,11 +4,13 @@
     {
         public Guid Id { get; set; }
         public PriceDTO Price { get; set; }
+        public AcceptDTO Accepted { get; set; }
 
-        public OrderDTO(Guid id, PriceDTO price)
+        public OrderDTO(Guid id, PriceDTO price, AcceptDTO accepted)
         {
-            Price = price;
             Id = id;
+            Price = price;
+            Accepted = accepted;
         }
     }
 }

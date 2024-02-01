@@ -4,7 +4,7 @@ namespace HangryHub.OrderService.Core.OrderAggregate.ValueObjects
 {
     public class Price : ValueObject
     {
-        public double Euro { get; set; }
+        public double Euro { get; private set; }
 
         public Price(double euro)
         {

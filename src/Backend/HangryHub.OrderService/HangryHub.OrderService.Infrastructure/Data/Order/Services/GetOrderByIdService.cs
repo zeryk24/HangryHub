@@ -7,7 +7,8 @@ namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
     {
         public Core.OrderAggregate.Order GetOrderById(Guid Id)
         {
-            return new Core.OrderAggregate.Order(new Core.OrderAggregate.ValueObjects.Price(20));
+            return new Core.OrderAggregate.Order(new Core.OrderAggregate.ValueObjects.Price(20),
+                new Core.OrderAggregate.ValueObjects.Accept(false, null));
         }
     }
 }

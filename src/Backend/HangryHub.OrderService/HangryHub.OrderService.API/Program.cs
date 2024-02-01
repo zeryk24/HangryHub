@@ -4,7 +4,7 @@ using HangryHub.OrderService.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 InfrastructureInstaller.InstallInfrastructure(builder.Services);
-ApplicationInstaller.InstallApplication(builder.Services);
+UseCasesInstaller.InstallApplication(builder.Services);
 
 // Add services to the container.
 builder.Services.AddControllers();

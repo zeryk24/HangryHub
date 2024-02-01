@@ -1,4 +1,5 @@
 ﻿using HangryHub.OderService.UseCases.Order;
+using HangryHub.OderService.UseCases.Order.Accept;
 using HangryHub.OderService.UseCases.Order.Create;
 using HangryHub.OderService.UseCases.Order.GetById;
 using MediatR;
@@ -27,6 +28,17 @@ namespace HangryHub.OrderService.API.Controllers
         public async Task<OrderDTO> Create(double price)
         {
             return await mediator.Send(new CreateOrderCommand(price));
+        }
+
+        [HttpPut("Accept")]
+        public async Task<ActionResult<OrderDTO>> Accept(Guid id)
+        {
+            var orderResult = await mediator.Send(new AcceptOrderCommand(id));
+            if (orderResult.IsError)
+            {
+                return NotFound();
+            }
+            return Ok(orderResult.Value);
         }
     }
 }
