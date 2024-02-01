@@ -20,6 +20,7 @@ namespace HangryHub.OrderService.Infrastructure
             services.AddTransient<IAcceptOrderService, AcceptOrderService>();
             services.AddTransient<IDeclineOrderService, DeclineOrderService>();
             services.AddTransient<IReadyOrderService, ReadyOrderService>();
+            services.AddTransient<ICheckStatusOrderService, CheckStatusOrderService>();
         }
     }
 }

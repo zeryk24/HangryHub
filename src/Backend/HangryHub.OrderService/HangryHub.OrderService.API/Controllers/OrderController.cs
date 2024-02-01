@@ -1,5 +1,6 @@
 ﻿using HangryHub.OderService.UseCases.Order;
 using HangryHub.OderService.UseCases.Order.Accept;
+using HangryHub.OderService.UseCases.Order.CheckStatus;
 using HangryHub.OderService.UseCases.Order.Create;
 using HangryHub.OderService.UseCases.Order.Decline;
 using HangryHub.OderService.UseCases.Order.GetById;
@@ -58,6 +59,17 @@ namespace HangryHub.OrderService.API.Controllers
         public async Task<ActionResult<OrderDTO>> Ready(Guid id)
         {
             var orderResult = await mediator.Send(new ReadyOrderCommand(id));
+            if (orderResult.IsError)
+            {
+                return NotFound();
+            }
+            return Ok(orderResult.Value);
+        }
+
+        [HttpGet("Status")]
+        public async Task<ActionResult<OrderStatusDTO>> CheckStatus(Guid id)
+        {
+            var orderResult = await mediator.Send(new CheckStatusOrderCommand(id));
             if (orderResult.IsError)
             {
                 return NotFound();

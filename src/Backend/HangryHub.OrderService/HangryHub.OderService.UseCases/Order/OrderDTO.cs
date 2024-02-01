@@ -7,5 +7,6 @@
         public AcceptDTO OrderAccepted { get; set; }
         public DeclineDTO OrderDeclined { get; set; }
         public OrderReadyDTO OrderReady { get; set; }
+        public OrderStatusDTO OrderState { get; set; }
     }
 }
