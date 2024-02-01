@@ -1,4 +1,5 @@
 ﻿using HangryHub.OrderService.Core.Interfaces;
+using Mapster;
 using MediatR;
 
 namespace HangryHub.OderService.UseCases.Order.Create
@@ -8,7 +9,7 @@ namespace HangryHub.OderService.UseCases.Order.Create
         public async Task<OrderDTO> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
             var order = await createOrderService.CreateOrderAsync(request.EuroPrice);
-            return new OrderDTO(order.Id, new PriceDTO(order.PriceEuro.Euro), new AcceptDTO(false, null));
+            return order.Adapt<OrderDTO>();
         }
     }
 }

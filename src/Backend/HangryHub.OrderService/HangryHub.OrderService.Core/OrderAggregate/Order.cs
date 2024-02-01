@@ -7,11 +7,13 @@ namespace HangryHub.OrderService.Core.OrderAggregate
     {
         public Price PriceEuro { get; private set; }
         public Accept OrderAccepted { get; private set; }
+        public Decline OrderDeclined { get; private set; }
 
-        public Order(Price euro, Accept orderAccepted)
+        public Order(Price euro, Accept orderAccepted, Decline orderDeclines)
         {
             PriceEuro = euro;
             OrderAccepted = orderAccepted;
+            OrderDeclined=orderDeclines;
         }
 
         private Order() { }
@@ -19,6 +21,11 @@ namespace HangryHub.OrderService.Core.OrderAggregate
         public void AcceptOrder()
         {
             OrderAccepted.AcceptOrder();
+        }
+
+        public void DeclineOrder()
+        {
+            OrderDeclined.DeclineOrder();
         }
     }
 }

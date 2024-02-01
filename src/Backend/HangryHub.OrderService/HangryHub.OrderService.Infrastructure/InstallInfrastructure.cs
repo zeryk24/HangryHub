@@ -18,6 +18,7 @@ namespace HangryHub.OrderService.Infrastructure
             services.AddTransient<IGetOrderByIdService, GetOrderByIdService>();
             services.AddTransient<ICreateOrderService, CreateOrderService>();
             services.AddTransient<IAcceptOrderService, AcceptOrderService>();
+            services.AddTransient<IDeclineOrderService, DeclineOrderService>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HangryHub.OrderService.Core.Interfaces;
+using Mapster;
 using MediatR;
 
 namespace HangryHub.OderService.UseCases.Order.GetById
@@ -9,8 +10,8 @@ namespace HangryHub.OderService.UseCases.Order.GetById
         public async Task<OrderDTO> Handle(GetOrderByIdQuery request, CancellationToken cancellationToken)
         {
             var order = getOrderByIdService.GetOrderById(request.Id);
-            
-            return new OrderDTO(order.Id, new PriceDTO(order.PriceEuro.Euro), new AcceptDTO(false, null));
+
+            return order.Adapt<OrderDTO>();
         }
     }
 }

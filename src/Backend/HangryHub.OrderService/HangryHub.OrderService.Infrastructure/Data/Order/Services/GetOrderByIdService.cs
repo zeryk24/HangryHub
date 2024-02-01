@@ -1,5 +1,4 @@
 ﻿using HangryHub.OrderService.Core.Interfaces;
-using HangryHub.OrderService.Core.OrderAggregate;
 
 namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
 {
@@ -8,7 +7,8 @@ namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
         public Core.OrderAggregate.Order GetOrderById(Guid Id)
         {
             return new Core.OrderAggregate.Order(new Core.OrderAggregate.ValueObjects.Price(20),
-                new Core.OrderAggregate.ValueObjects.Accept(false, null));
+                new Core.OrderAggregate.ValueObjects.Accept(false, null),
+                new Core.OrderAggregate.ValueObjects.Decline(false, null));
         }
     }
 }

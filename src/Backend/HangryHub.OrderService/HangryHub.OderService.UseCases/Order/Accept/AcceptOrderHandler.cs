@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using HangryHub.OrderService.Core.Interfaces;
+using Mapster;
 using MediatR;
 
 namespace HangryHub.OderService.UseCases.Order.Accept
@@ -14,7 +15,7 @@ namespace HangryHub.OderService.UseCases.Order.Accept
                 return orderResult.Errors;
             }
             var order = orderResult.Value;
-            return new OrderDTO(order.Id, new PriceDTO(order.PriceEuro.Euro), new AcceptDTO(order.OrderAccepted.IsAccepted, order.OrderAccepted.Date));
+            return order.Adapt<OrderDTO>();
         }
     }
 }
