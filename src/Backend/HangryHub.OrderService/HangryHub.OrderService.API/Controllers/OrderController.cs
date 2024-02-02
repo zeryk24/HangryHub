@@ -21,6 +21,12 @@ namespace HangryHub.OrderService.API.Controllers
             this.mediator = mediator;
         }
 
+        [HttpGet("Run")]
+        public ActionResult<string> RunningTest()
+        {
+            return "Order Service is running";
+        }
+
         [HttpGet]
         public async Task<OrderDTO> Get()
         {
