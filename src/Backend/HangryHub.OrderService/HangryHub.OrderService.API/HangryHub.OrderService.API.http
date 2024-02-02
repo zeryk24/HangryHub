@@ -1,0 +1,6 @@
+@HangryHub.OrderService.API_HostAddress = http://localhost:5288
+
+GET {{HangryHub.OrderService.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
