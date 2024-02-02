@@ -20,4 +20,8 @@
     <ProjectReference Include="..\HangryHub.OrderService.Infrastructure\HangryHub.OrderService.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="sqlitedb\" />
+  </ItemGroup>
+
 </Project>

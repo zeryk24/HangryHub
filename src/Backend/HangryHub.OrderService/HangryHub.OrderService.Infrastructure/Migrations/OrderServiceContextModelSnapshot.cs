@@ -3,7 +3,6 @@ using System;
 using HangryHub.OrderService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -16,20 +15,16 @@ namespace HangryHub.OrderService.Infrastructure.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
 
             modelBuilder.Entity("HangryHub.OrderService.Core.OrderAggregate.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("OrderState")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -41,13 +36,13 @@ namespace HangryHub.OrderService.Infrastructure.Migrations
                     b.OwnsOne("HangryHub.OrderService.Core.OrderAggregate.ValueObjects.Accept", "OrderAccepted", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("TEXT");
 
                             b1.Property<DateTime?>("Date")
-                                .HasColumnType("datetime2");
+                                .HasColumnType("TEXT");
 
                             b1.Property<bool>("IsAccepted")
-                                .HasColumnType("bit");
+                                .HasColumnType("INTEGER");
 
                             b1.HasKey("OrderId");
 
@@ -60,13 +55,13 @@ namespace HangryHub.OrderService.Infrastructure.Migrations
                     b.OwnsOne("HangryHub.OrderService.Core.OrderAggregate.ValueObjects.Decline", "OrderDeclined", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("TEXT");
 
                             b1.Property<DateTime?>("Date")
-                                .HasColumnType("datetime2");
+                                .HasColumnType("TEXT");
 
                             b1.Property<bool>("IsDeclined")
-                                .HasColumnType("bit");
+                                .HasColumnType("INTEGER");
 
                             b1.HasKey("OrderId");
 
@@ -79,10 +74,10 @@ namespace HangryHub.OrderService.Infrastructure.Migrations
                     b.OwnsOne("HangryHub.OrderService.Core.OrderAggregate.ValueObjects.Price", "PriceEuro", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("TEXT");
 
                             b1.Property<double>("Euro")
-                                .HasColumnType("float");
+                                .HasColumnType("REAL");
 
                             b1.HasKey("OrderId");
 
@@ -95,13 +90,13 @@ namespace HangryHub.OrderService.Infrastructure.Migrations
                     b.OwnsOne("HangryHub.OrderService.Core.OrderAggregate.ValueObjects.Ready", "OrderReady", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("TEXT");
 
                             b1.Property<DateTime?>("Date")
-                                .HasColumnType("datetime2");
+                                .HasColumnType("TEXT");
 
                             b1.Property<bool>("IsReady")
-                                .HasColumnType("bit");
+                                .HasColumnType("INTEGER");
 
                             b1.HasKey("OrderId");
 

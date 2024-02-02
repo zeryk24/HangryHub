@@ -1,5 +1,6 @@
 using HangryHub.OderService.UseCases;
 using HangryHub.OrderService.Infrastructure;
+using HangryHub.OrderService.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,5 +27,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetService<OrderServiceContext>();
+InfrastructureInstaller.ConfigureInfrastructure(context, app.Environment.IsDevelopment());
 
 app.Run();
