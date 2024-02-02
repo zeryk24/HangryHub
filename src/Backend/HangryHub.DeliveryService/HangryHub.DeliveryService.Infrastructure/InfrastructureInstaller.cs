@@ -22,7 +22,7 @@ namespace HangryHub.DeliveryService.Infrastructure
             string connection_string = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=HangryHub.DeliveryService;";
             services.AddDbContext<DeliveryServiceContext>((options) =>
             {
-                options.UseSqlite("Data Source=LocalDb/HangryHub.DeliveryService.db");
+                options.UseSqlite("Filename=sqlitedb/delivery.db;");
                 //options.UseSqlServer(connection_string);
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             }

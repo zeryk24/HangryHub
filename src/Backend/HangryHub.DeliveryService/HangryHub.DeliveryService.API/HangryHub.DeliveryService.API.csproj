@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="LocalDb\" />
+    <Folder Include="sqlitedb\" />
   </ItemGroup>
 
 </Project>
