@@ -26,11 +26,51 @@ namespace HangryHub.DeliveryService.Delivery.Controllers
         }
 
 
-        [HttpPost("Select")]
+        [HttpPut("Select")]
         public Task<bool> SelectDelivery(Guid delivery, Guid freelencer)
         {
             return mediator.Send(new SelectDeliveryCommand(delivery,freelencer));
         }
+
+
+        [HttpGet("State")]
+        public Task<string> GetDeliveryState(Guid delivery)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        [HttpPut("Pickup")]
+        public Task<string> PickupDelivery(Guid delivery)
+        {
+            throw new NotImplementedException();
+          
+        }
+
+        [HttpPut("Deliver")]
+        public Task<string> DeliveryDelivered(Guid delivery)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPut("Cancel")]
+        public Task<string> CancelDelivery(Guid delivery)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        [HttpPost("Review")]
+        public Task<string> CreateReviwe(Guid delivery, string review)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+
+
 
 
     }
