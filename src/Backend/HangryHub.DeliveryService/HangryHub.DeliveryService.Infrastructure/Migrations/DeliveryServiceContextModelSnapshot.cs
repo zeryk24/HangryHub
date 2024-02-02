@@ -3,7 +3,6 @@ using System;
 using HangryHub.DeliveryService.Infrastructure.Common.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -16,20 +15,16 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
             modelBuilder.Entity("HangryHub.DeliveryService.Domain.DeliveryAggregate.Delivery", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("State")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -41,7 +36,7 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                     b.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities.Customer", "Customer", b1 =>
                         {
                             b1.Property<Guid>("DeliveryId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("TEXT");
 
                             b1.HasKey("DeliveryId");
 
@@ -53,15 +48,15 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.CustomerContact", "Contact", b2 =>
                                 {
                                     b2.Property<Guid>("CustomerDeliveryId")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("RealPhone")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("VirtualPhone")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.HasKey("CustomerDeliveryId");
 
@@ -74,18 +69,18 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.CustomerDeliveryLocation", "DeliveryLocation", b2 =>
                                 {
                                     b2.Property<Guid>("CustomerDeliveryId")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("Address")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("Note")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<int>("Type")
-                                        .HasColumnType("int");
+                                        .HasColumnType("INTEGER");
 
                                     b2.HasKey("CustomerDeliveryId");
 
@@ -98,10 +93,10 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.CustomerId", "Id", b2 =>
                                 {
                                     b2.Property<Guid>("CustomerDeliveryId")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<Guid>("Id")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.HasKey("CustomerDeliveryId");
 
@@ -124,10 +119,10 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                     b.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities.Freelencer", "Freelencer", b1 =>
                         {
                             b1.Property<Guid>("DeliveryId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("TEXT");
 
                             b1.Property<int>("TransportType")
-                                .HasColumnType("int");
+                                .HasColumnType("INTEGER");
 
                             b1.HasKey("DeliveryId");
 
@@ -139,15 +134,15 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.FreelencerContact", "Contact", b2 =>
                                 {
                                     b2.Property<Guid>("FreelencerDeliveryId")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("RealPhone")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("VirtualPhone")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.HasKey("FreelencerDeliveryId");
 
@@ -160,10 +155,10 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.FreelencerId", "Id", b2 =>
                                 {
                                     b2.Property<Guid>("FreelencerDeliveryId")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<Guid>("Id")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.HasKey("FreelencerDeliveryId");
 
@@ -183,7 +178,7 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                     b.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities.Order", "Order", b1 =>
                         {
                             b1.Property<Guid>("DeliveryId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("TEXT");
 
                             b1.HasKey("DeliveryId");
 
@@ -195,10 +190,10 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.OrderId", "Id", b2 =>
                                 {
                                     b2.Property<Guid>("OrderDeliveryId")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<Guid>("Id")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.HasKey("OrderDeliveryId");
 
@@ -215,7 +210,7 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                     b.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities.Restaurant", "Restaurant", b1 =>
                         {
                             b1.Property<Guid>("DeliveryId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("TEXT");
 
                             b1.HasKey("DeliveryId");
 
@@ -227,15 +222,15 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.RestaurantContact", "Contact", b2 =>
                                 {
                                     b2.Property<Guid>("RestaurantDeliveryId")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("RealPhone")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("VirtualPhone")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.HasKey("RestaurantDeliveryId");
 
@@ -248,10 +243,10 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.RestaurantId", "Id", b2 =>
                                 {
                                     b2.Property<Guid>("RestaurantDeliveryId")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<Guid>("Id")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.HasKey("RestaurantDeliveryId");
 
@@ -264,15 +259,15 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.RestaurantLocation", "Location", b2 =>
                                 {
                                     b2.Property<Guid>("RestaurantDeliveryId")
-                                        .HasColumnType("uniqueidentifier");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("Address")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.Property<string>("Description")
                                         .IsRequired()
-                                        .HasColumnType("nvarchar(max)");
+                                        .HasColumnType("TEXT");
 
                                     b2.HasKey("RestaurantDeliveryId");
 
