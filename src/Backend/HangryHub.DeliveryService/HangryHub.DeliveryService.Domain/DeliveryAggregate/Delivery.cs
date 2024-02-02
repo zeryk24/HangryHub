@@ -21,7 +21,23 @@ namespace HangryHub.DeliveryService.Domain.DeliveryAggregate
             Customer = customer;
             Freelencer = freelencer;
             State = state;
+
+
+            // check invariants
+            if (state == DeliveryState.NotAsigned && freelencer != null)
+            {
+                throw new System.Exception("Delivery cannot be in state NotAsigned and have a freelencer");
+            }
+            if (state == DeliveryState.OnTheWay || state == DeliveryState.WaitingForPickup || state == DeliveryState.Finished)
+            {
+                if (freelencer == null)
+                {
+                    throw new System.Exception("Delivery cannot be asigned without a freelancer.");
+                }
+            }
         }
+
+
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         private Delivery() : base(Guid.Empty)

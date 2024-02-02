@@ -1,4 +1,5 @@
 ﻿using HangryHub.DeliveryService.Application.Common;
+using HangryHub.DeliveryService.Application.Delivery.GetState;
 using HangryHub.DeliveryService.Application.Delivery.ListAvaiable;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities;
@@ -30,6 +31,7 @@ namespace HangryHub.DeliveryService.Infrastructure
             
             services.AddTransient<IRepository<Domain.DeliveryAggregate.Delivery>, EFRepository<Domain.DeliveryAggregate.Delivery>>();
             services.AddTransient<IListAvaiableQueryService, ListAvaiableQueryService>();
+            services.AddTransient<IDeliveryStateService, DeliveryStateService>();
 
 
 

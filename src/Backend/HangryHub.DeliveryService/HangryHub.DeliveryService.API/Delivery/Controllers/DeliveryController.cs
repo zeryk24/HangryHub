@@ -1,5 +1,7 @@
 ﻿using HangryHub.DeliveryService.Application.Delivery;
 using HangryHub.DeliveryService.Application.Delivery.Get;
+using HangryHub.DeliveryService.Application.Delivery.GetNavigation;
+using HangryHub.DeliveryService.Application.Delivery.GetState;
 using HangryHub.DeliveryService.Application.Delivery.ListAvaiable;
 using HangryHub.DeliveryService.Application.Delivery.Select;
 using MediatR;
@@ -34,23 +36,22 @@ namespace HangryHub.DeliveryService.Delivery.Controllers
 
 
         [HttpGet("State")]
-        public Task<string> GetDeliveryState(Guid delivery)
+        public Task<GetStateQueryResult> GetDeliveryState(Guid delivery)
         {
-            throw new NotImplementedException();
+            return mediator.Send(new GetStateQuery(delivery));
 
         }
 
         [HttpPut("Pickup")]
-        public Task<string> PickupDelivery(Guid delivery)
+        public Task<bool> PickupDelivery(Guid delivery)
         {
-            throw new NotImplementedException();
-          
+            return mediator.Send(new PickupDeliveryCommand(delivery));
         }
 
-        [HttpPut("Deliver")]
-        public Task<string> DeliveryDelivered(Guid delivery)
+        [HttpPut("Complete")]
+        public Task<bool> CompleteDelivery(Guid delivery)
         {
-            throw new NotImplementedException();
+            return mediator.Send(new CompleteDeliveryCommand(delivery));
         }
 
         [HttpPut("Cancel")]
@@ -61,9 +62,15 @@ namespace HangryHub.DeliveryService.Delivery.Controllers
 
 
         [HttpPost("Review")]
-        public Task<string> CreateReviwe(Guid delivery, string review)
+        public Task<string> CreateReview(Guid delivery, string review)
         {
             throw new NotImplementedException();
+        }
+
+        [HttpGet("Navigation")]
+        public Task<NavigationData> GetNavigationData(Guid delivery)
+        {
+            return mediator.Send(new GetNavigationQuery(delivery));
         }
 
 
