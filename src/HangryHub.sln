@@ -1,4 +1,3 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
@@ -35,11 +34,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangryHub.DeliveryService.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangryHub.OrderService.Core", "Backend\HangryHub.OrderService\HangryHub.OrderService.Core\HangryHub.OrderService.Core.csproj", "{D00DD94B-649D-496C-94A7-45E8373D6EB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangryHub.OrderService.API", "Backend\HangryHub.OrderService\HangryHub.OrderService.API\HangryHub.OrderService.API.csproj", "{16E78867-6DB0-4527-9D1F-D0CF33FBC307}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangryHub.OrderService.API", "Backend\HangryHub.OrderService\HangryHub.OrderService.API\HangryHub.OrderService.API.csproj", "{16E78867-6DB0-4527-9D1F-D0CF33FBC307}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangryHub.OderService.UseCases", "Backend\HangryHub.OrderService\HangryHub.OderService.UseCases\HangryHub.OderService.UseCases.csproj", "{B0302EF4-82E6-4124-AF66-E263924280A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangryHub.OderService.UseCases", "Backend\HangryHub.OrderService\HangryHub.OderService.UseCases\HangryHub.OderService.UseCases.csproj", "{B0302EF4-82E6-4124-AF66-E263924280A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangryHub.OrderService.Infrastructure", "Backend\HangryHub.OrderService\HangryHub.OrderService.Infrastructure\HangryHub.OrderService.Infrastructure.csproj", "{05455C85-037D-4E28-8003-1C52099D1551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangryHub.OrderService.Infrastructure", "Backend\HangryHub.OrderService\HangryHub.OrderService.Infrastructure\HangryHub.OrderService.Infrastructure.csproj", "{05455C85-037D-4E28-8003-1C52099D1551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangryHub.MainService.Domain", "HangryHub.MainService.Domain\HangryHub.MainService.Domain.csproj", "{602CE65C-87DD-483C-8322-D286A2253D41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangryHub.MainService.Application", "HangryHub.MainService.Application\HangryHub.MainService.Application.csproj", "{E2B94480-33F9-40D5-A9E6-F82BBB7F8312}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangryHub.MainService.Infrastructure", "HangryHub.MainService.Infrastructure\HangryHub.MainService.Infrastructure.csproj", "{E65B9520-FDB0-4E99-B1E8-772AFD2A59CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangryHub.MainService.API", "HangryHub.MainService.API\HangryHub.MainService.API.csproj", "{393CBC6D-18E1-445E-AC26-9269A6D9941F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +110,22 @@ Global
 		{05455C85-037D-4E28-8003-1C52099D1551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05455C85-037D-4E28-8003-1C52099D1551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05455C85-037D-4E28-8003-1C52099D1551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{602CE65C-87DD-483C-8322-D286A2253D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{602CE65C-87DD-483C-8322-D286A2253D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{602CE65C-87DD-483C-8322-D286A2253D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{602CE65C-87DD-483C-8322-D286A2253D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2B94480-33F9-40D5-A9E6-F82BBB7F8312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2B94480-33F9-40D5-A9E6-F82BBB7F8312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2B94480-33F9-40D5-A9E6-F82BBB7F8312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2B94480-33F9-40D5-A9E6-F82BBB7F8312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65B9520-FDB0-4E99-B1E8-772AFD2A59CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65B9520-FDB0-4E99-B1E8-772AFD2A59CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65B9520-FDB0-4E99-B1E8-772AFD2A59CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65B9520-FDB0-4E99-B1E8-772AFD2A59CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{393CBC6D-18E1-445E-AC26-9269A6D9941F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393CBC6D-18E1-445E-AC26-9269A6D9941F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393CBC6D-18E1-445E-AC26-9269A6D9941F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393CBC6D-18E1-445E-AC26-9269A6D9941F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +149,10 @@ Global
 		{16E78867-6DB0-4527-9D1F-D0CF33FBC307} = {637717A4-8B45-4F5E-9DF9-4B42505B0A08}
 		{B0302EF4-82E6-4124-AF66-E263924280A2} = {637717A4-8B45-4F5E-9DF9-4B42505B0A08}
 		{05455C85-037D-4E28-8003-1C52099D1551} = {637717A4-8B45-4F5E-9DF9-4B42505B0A08}
+		{602CE65C-87DD-483C-8322-D286A2253D41} = {0D4ADA4F-0691-495A-8E7B-02281F43DD55}
+		{E2B94480-33F9-40D5-A9E6-F82BBB7F8312} = {0D4ADA4F-0691-495A-8E7B-02281F43DD55}
+		{E65B9520-FDB0-4E99-B1E8-772AFD2A59CB} = {0D4ADA4F-0691-495A-8E7B-02281F43DD55}
+		{393CBC6D-18E1-445E-AC26-9269A6D9941F} = {0D4ADA4F-0691-495A-8E7B-02281F43DD55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B14D0B25-791C-498D-B810-E2AB7E73BD9B}
