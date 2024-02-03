@@ -1,4 +1,5 @@
 ﻿using HangryHub.DeliveryService.Application.Delivery;
+using HangryHub.DeliveryService.Application.Delivery.DeliveryStateUpdate;
 using HangryHub.DeliveryService.Application.Delivery.Get;
 using HangryHub.DeliveryService.Application.Delivery.GetNavigation;
 using HangryHub.DeliveryService.Application.Delivery.GetState;
@@ -71,6 +72,14 @@ namespace HangryHub.DeliveryService.Delivery.Controllers
         public Task<NavigationData> GetNavigationData(Guid delivery)
         {
             return mediator.Send(new GetNavigationQuery(delivery));
+        }
+
+
+        [HttpPost("TestBus")]
+        public Task SendTestMessageToBus()
+        {
+            mediator.Send(new UpdateDeliveryStateCommand());
+            return Task.CompletedTask;
         }
 
 
