@@ -17,15 +17,15 @@ namespace HangryHub.MainService.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(RestaurantCreateModel model)
+        public async Task<IActionResult> Create(RestaurantCreateModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _mediator.Send(new CreateRestaurantCommand(model.Name, model.AddressLine1, model.AddressLine2, model.Country));
-            return Ok();
+            var restaurant = await _mediator.Send(new CreateRestaurantCommand(model.Name, model.AddressLine1, model.AddressLine2, model.Country));
+            return Ok(restaurant);
         }
 
         [HttpGet]

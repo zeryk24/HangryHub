@@ -7,12 +7,10 @@ namespace HangryHub.MainService.Application.Restaurant.Command.CreateRestaurant
     internal class CreateRestaurantCommandHandler : IRequestHandler<CreateRestaurantCommand, ErrorOr<Domain.RestaurantAggregate.Restaurant>>
     {
         private readonly IRepository<Domain.RestaurantAggregate.Restaurant> _restaurantRepository;
-        private readonly IRepository<Domain.RestaurantAggregate.Entities.RestaurantLocation> _restaurantLocationRepository;
 
-        public CreateRestaurantCommandHandler(IRepository<Domain.RestaurantAggregate.Restaurant> restaurantRepository, IRepository<Domain.RestaurantAggregate.Entities.RestaurantLocation> restaurantLocationRepository)
+        public CreateRestaurantCommandHandler(IRepository<Domain.RestaurantAggregate.Restaurant> restaurantRepository)
         {
             _restaurantRepository = restaurantRepository;
-            _restaurantLocationRepository = restaurantLocationRepository;
         }
 
         public async Task<ErrorOr<Domain.RestaurantAggregate.Restaurant>> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
@@ -32,12 +30,11 @@ namespace HangryHub.MainService.Application.Restaurant.Command.CreateRestaurant
                 Location = location,
             };
 
-            _restaurantLocationRepository.Insert(location);
             _restaurantRepository.Insert(restaurant);
 
             await _restaurantRepository.SaveChangesAsync();
 
-            return default;
+            return restaurant;
         }
     }
 }

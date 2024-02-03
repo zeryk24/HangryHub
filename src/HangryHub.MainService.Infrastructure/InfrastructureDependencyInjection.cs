@@ -19,13 +19,12 @@ namespace HangryHub.MainService.Infrastructure
 
             services.AddDbContext<MainDBContext>((options) =>
             {
-                options.UseSqlite("Filename=sqlitedb/test_db1.db;");
+                options.UseSqlite("Data Source=main_test1.db");
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
-            services.AddTransient<IRepository<Domain.RestaurantAggregate.Restaurant>, EFRepository<Domain.RestaurantAggregate.Restaurant>>();
-            services.AddTransient<IRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>, EFRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>>();
-            services.AddTransient<IRepository<Domain.RestaurantAggregate.Entities.RestaurantLocation>, EFRepository<Domain.RestaurantAggregate.Entities.RestaurantLocation>>();
+            services.AddScoped<IRepository<Domain.RestaurantAggregate.Restaurant>, EFRepository<Domain.RestaurantAggregate.Restaurant>>();
+            services.AddScoped<IRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>, EFRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>>();
             /*services.AddTransient<IListAvaiableQueryService, ListAvaiableQueryService>();
             services.AddTransient<IDeliveryStateService, DeliveryStateService>();*/
         }
