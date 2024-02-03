@@ -1,6 +1,7 @@
 ﻿using HangryHub.MainService.Application;
 using HangryHub.MainService.Application.Repository;
 using HangryHub.MainService.Infrastructure.Repository;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,9 +18,14 @@ namespace HangryHub.MainService.Infrastructure
         {
             ApplicationDependencyInjection.InstallApplication(services);
 
+            var builder = new SqliteConnectionStringBuilder("Data Source=main_test1.db");
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            builder.DataSource = Path.Combine(baseDir, builder.DataSource);
+
             services.AddDbContext<MainDBContext>((options) =>
             {
-                options.UseSqlite("Data Source=main_test1.db");
+                options.UseSqlite(builder.ToString());
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
