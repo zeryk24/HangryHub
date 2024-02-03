@@ -1,15 +1,18 @@
 ﻿using HangryHub.DeliveryService.Application.Common;
 using HangryHub.DeliveryService.Application.Delivery.GetState;
 using HangryHub.DeliveryService.Application.Delivery.ListAvaiable;
+using HangryHub.DeliveryService.Application.Delivery.TestMessageConsumer;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects;
 using HangryHub.DeliveryService.Infrastructure.Common.Data;
 using HangryHub.DeliveryService.Infrastructure.Delivery.Data.QueryService;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+
 
 namespace HangryHub.DeliveryService.Infrastructure
 {
@@ -34,6 +37,25 @@ namespace HangryHub.DeliveryService.Infrastructure
             services.AddTransient<IListAvaiableQueryService, ListAvaiableQueryService>();
             services.AddTransient<IDeliveryStateService, DeliveryStateService>();
 
+
+            // rabbit mq
+            services.AddMassTransit(x =>
+            {
+
+                // add from assembly, alternative is to add every consumer manually
+                x.AddConsumers(typeof(TestMessageConsumer).Assembly);
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    
+                    cfg.Host("rabbitmq", h => {
+                        
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+
+                    cfg.ConfigureEndpoints(context);
+                });
+            });
 
 
         }

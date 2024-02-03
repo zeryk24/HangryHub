@@ -14,6 +14,8 @@ namespace HangryHub.DeliveryService.Application
         {
             var assembly = Assembly.GetExecutingAssembly();
             services.InstallMediatr(assembly);
+
+           
         }
         private static void InstallMediatr(this IServiceCollection services, Assembly assembly)
         {

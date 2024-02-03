@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+    rabbitmq:
+        image: masstransit/rabbitmq:latest
+        ports:
+         - "5672:5672"
+         - "15672:15672"
+         - "15692:15692"
+
+    hangryhub-service-delivery:
+        build:
+            context: ./
+            dockerfile: ./Backend/HangryHub.DeliveryService/HangryHub.DeliveryService.API/Dockerfile
+        ports:
+            - "8080:8080"
+        restart: always
+        depends_on:
+            - rabbitmq
+
+    hangryhub-service-order:
+        build:
+            context: ./
+            dockerfile: ./Backend/HangryHub.OrderService/HangryHub.OrderService.API/Dockerfile
+        ports:
+            - "8081:8080"
+        restart: always
+        depends_on:
+            - rabbitmq
+    
+
