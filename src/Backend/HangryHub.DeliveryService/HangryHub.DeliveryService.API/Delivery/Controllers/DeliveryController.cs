@@ -75,7 +75,7 @@ namespace HangryHub.DeliveryService.Delivery.Controllers
         }
 
 
-        [HttpPost("TestBus")]
+        [HttpGet("TestBus")]
         public Task SendTestMessageToBus()
         {
             mediator.Send(new UpdateDeliveryStateCommand());
