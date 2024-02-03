@@ -24,8 +24,4 @@
     <ProjectReference Include="..\HangryHub.DeliveryService.Infrastructure\HangryHub.DeliveryService.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="sqlitedb\" />
-  </ItemGroup>
-
 </Project>

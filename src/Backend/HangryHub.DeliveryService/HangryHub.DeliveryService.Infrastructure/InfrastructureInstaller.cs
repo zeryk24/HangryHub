@@ -20,6 +20,7 @@ namespace HangryHub.DeliveryService.Infrastructure
             // TODO: temporary, refactor!
 
             string connection_string = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=HangryHub.DeliveryService;";
+            System.IO.Directory.CreateDirectory("sqlitedb");
             services.AddDbContext<DeliveryServiceContext>((options) =>
             {
                 options.UseSqlite("Filename=sqlitedb/delivery.db;");
