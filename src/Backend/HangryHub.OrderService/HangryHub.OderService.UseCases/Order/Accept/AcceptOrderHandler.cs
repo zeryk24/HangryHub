@@ -9,12 +9,12 @@ namespace HangryHub.OderService.UseCases.Order.Accept
     public class AcceptOrderHandler : IRequestHandler<AcceptOrderCommand, ErrorOr<OrderDTO>>
     {
         private IAcceptOrderService acceptOrderService;
-        private IPublishEndpoint publishEndpoint;
+        private IOrderStatusChangeService orderStatusChangeService;
 
-        public AcceptOrderHandler(IAcceptOrderService acceptOrderService, IPublishEndpoint publishEndpoint)
+        public AcceptOrderHandler(IAcceptOrderService acceptOrderService, IOrderStatusChangeService orderStatusChangeService)
         {
             this.acceptOrderService = acceptOrderService;
-            this.publishEndpoint = publishEndpoint;
+            this.orderStatusChangeService = orderStatusChangeService;
         }
 
         public async Task<ErrorOr<OrderDTO>> Handle(AcceptOrderCommand request, CancellationToken cancellationToken)
@@ -25,25 +25,10 @@ namespace HangryHub.OderService.UseCases.Order.Accept
                 return orderResult.Errors;
             }
 
-            await UpdateOrderStateAsync();
-
             var order = orderResult.Value;
+            await orderStatusChangeService.OrderStatusChangeAsync(order.Id, order.OrderState);
+
             return order.Adapt<OrderDTO>();
         }
-
-        private async Task UpdateOrderStateAsync()
-        {
-            await publishEndpoint.Publish<OrderSubmitted>(new()
-            {
-                OrderId = "27",
-                OrderDate = DateTime.UtcNow,
-            });
-        }
-    }
-
-    public record OrderSubmitted
-    {
-        public string OrderId { get; init; }
-        public DateTime OrderDate { get; init; }
     }
 }
