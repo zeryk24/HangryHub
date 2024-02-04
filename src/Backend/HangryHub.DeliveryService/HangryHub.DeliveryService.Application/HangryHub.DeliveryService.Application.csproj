@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HangryHub.OrderService\HangryHub.OrderService.Contracts\HangryHub.OrderService.Contracts.csproj" />
     <ProjectReference Include="..\HangryHub.DeliveryService.Domain\HangryHub.DeliveryService.Domain.csproj" />
   </ItemGroup>
 
