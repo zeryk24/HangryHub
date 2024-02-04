@@ -1,7 +1,11 @@
 ﻿using HangryHub.MainService.Domain.RestaurantAggregate;
 using HangryHub.MainService.Domain.RestaurantAggregate.Entities;
 using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
+using HangryHub.MainService.Domain.ShoppingCartAggregate;
+using HangryHub.MainService.Domain.ShoppingCartAggregate.Entities;
 using HangryHub.MainService.Infrastructure.Configuration;
+using HangryHub.MainService.Infrastructure.Configuration.RestaurantAggregateConfigs;
+using HangryHub.MainService.Infrastructure.Configuration.ShoppingCartAggregateConfigs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,6 +28,11 @@ namespace HangryHub.MainService.Infrastructure.Repository
 
         public DbSet<RestaurantItem> RestaurantItems { get; set; }
 
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
+        public DbSet<DeliveryData> DeliveryDatas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,6 +61,11 @@ namespace HangryHub.MainService.Infrastructure.Repository
             modelBuilder.ApplyConfiguration(new IngredientConfiguration());
             modelBuilder.ApplyConfiguration(new AdditionalIngredientConfiguration());
             modelBuilder.ApplyConfiguration(new CouponConfiguration());
+
+            modelBuilder.ApplyConfiguration(new DeliveryDataConfiguration());
+            modelBuilder.ApplyConfiguration(new ShoppingCartConfiguration());
+            modelBuilder.ApplyConfiguration(new ShoppingCartItemConfiguration());
+            modelBuilder.ApplyConfiguration(new SelectedAdditionalIngredientConfiguration());
 
             // Seeding is practically fucked ... It seems like EFCore is completely dumbfucked what to do with Owned entities.
             // In this case it fails like wildfire ...

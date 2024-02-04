@@ -32,6 +32,7 @@ namespace HangryHub.MainService.Infrastructure
             services.AddScoped<IRepository<Domain.RestaurantAggregate.Restaurant>, EFRepository<Domain.RestaurantAggregate.Restaurant>>();
             services.AddScoped<IRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>, EFRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>>();
             services.AddScoped<IRestaurantAggregateRepository, RestaurantAggregateRepository>();
+            services.AddScoped<IShoppingCartAggregateRepository, ShoppingCartAggregateRepository>();
             /*services.AddTransient<IListAvaiableQueryService, ListAvaiableQueryService>();
             services.AddTransient<IDeliveryStateService, DeliveryStateService>();*/
         }

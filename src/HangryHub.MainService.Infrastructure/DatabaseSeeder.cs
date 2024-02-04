@@ -1,6 +1,9 @@
 ﻿using HangryHub.MainService.Domain.RestaurantAggregate;
 using HangryHub.MainService.Domain.RestaurantAggregate.Entities;
 using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
+using HangryHub.MainService.Domain.ShoppingCartAggregate;
+using HangryHub.MainService.Domain.ShoppingCartAggregate.Entities;
+using HangryHub.MainService.Domain.ShoppingCartAggregate.ValueObjects;
 using HangryHub.MainService.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -141,7 +144,62 @@ namespace HangryHub.MainService.Infrastructure
                 var b = item.Items.Select(a => a.AdditionalIngredients.Select(a => new { a.Name, a.Price })).ToList();
             }
 
+
+            for (int i = 0; i < 10; i++)
+            {
+                await SeedOrderForRestaurantAsync(dbContext, result.First(), new(Guid.NewGuid()));
+            }
+
             var debugBreak = 10;
+        }
+
+        private static async Task SeedOrderForRestaurantAsync(MainDBContext dbContext, Restaurant restaurant, CustomerId userId)
+        {
+            var shoppingCart = new ShoppingCart(new(Guid.NewGuid()))
+            {
+                CustomerId = userId,
+                LastUpdatedDate = DateTime.Now,
+                RestaurantId = restaurant.Id,
+            };
+
+            var scItems = new List<ShoppingCartItem>();
+
+            foreach (var item in restaurant.Items)
+            {
+                if (Random.Shared.Next(1, 4) == 2)
+                {
+                    continue;
+                }
+
+                var additionalIngredients = item.AdditionalIngredients
+                    .Take(Random.Shared.Next(1, 5))
+                    .ToList();
+
+                var sciId = new ShoppingCartItemId(Guid.NewGuid());
+
+                var shoppingCartItem = new ShoppingCartItem(sciId)
+                {
+                    ShoppingCartId = shoppingCart.Id,
+                    ItemName = item.Name,
+                    ItemDescription = $"{item.Description} {item.Ingredients.Select(a => a.Name).Aggregate((a, b) => $"{a}, {b}")}",
+                    RestaurantItemId = item.Id,
+                    Price = item.Price * Random.Shared.Next(5, 10),
+                    Quantity = Random.Shared.Next(1, 5),
+                    SelectedAdditionalIngredients = additionalIngredients.Select(additionalIngredient => new SelectedAdditionalIngredient(new(Guid.NewGuid()))
+                    {
+                        AdditionalIngredientId = additionalIngredient.Id,
+                        ShoppingCartItemId = sciId,
+                        Name = additionalIngredient.Name,
+                        Quantity = Random.Shared.Next(1, 5),
+                    }).ToList(),
+                };
+
+                scItems.Add(shoppingCartItem);
+            }
+
+            shoppingCart.Items = scItems;
+            dbContext.ShoppingCarts.Add(shoppingCart);
+            await dbContext.SaveChangesAsync();
         }
 
         private static Dictionary<string, IngredientId> IngredientGenerator()

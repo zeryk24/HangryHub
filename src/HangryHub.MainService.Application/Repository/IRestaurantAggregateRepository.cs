@@ -10,10 +10,10 @@ namespace HangryHub.MainService.Application.Repository
 {
     public interface IRestaurantAggregateRepository : IRepository<Domain.RestaurantAggregate.Restaurant>
     {
-        public Task<IEnumerable<Domain.RestaurantAggregate.Restaurant>> GetWithAllRelatedEntitiesAsync();
+        public Task<IEnumerable<Domain.RestaurantAggregate.Restaurant>> GetAllWithDetailsAsync();
 
-        public Task<IEnumerable<Domain.RestaurantAggregate.Restaurant>> GetWithAllRelatedEntitiesAsync(params RestaurantId[] ids);
+        public Task<IEnumerable<Domain.RestaurantAggregate.Restaurant>> GetWithDetailsAsync(params RestaurantId[] ids);
 
-        public Task<Domain.RestaurantAggregate.Restaurant?> FindByIdWithAllRelatedEntitiesAsync(RestaurantId id);
+        public Task<Domain.RestaurantAggregate.Restaurant?> GetWithDetailsAsync(RestaurantId id);
     }
 }

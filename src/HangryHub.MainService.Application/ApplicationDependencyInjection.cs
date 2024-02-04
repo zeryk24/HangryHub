@@ -14,8 +14,11 @@ namespace HangryHub.MainService.Application
         public static void InstallApplication(this IServiceCollection services)
         {
             var assembly = Assembly.GetExecutingAssembly();
+
             services.InstallMediatr(assembly);
+
             RestaurantMapperConfig.RegisterMappings();
+            ShoppingCartMapperConfig.RegisterMappings();
         }
 
         private static void InstallMediatr(this IServiceCollection services, Assembly assembly)

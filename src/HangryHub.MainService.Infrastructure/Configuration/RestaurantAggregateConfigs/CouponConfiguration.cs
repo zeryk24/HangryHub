@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
 
-namespace HangryHub.MainService.Infrastructure.Configuration
+namespace HangryHub.MainService.Infrastructure.Configuration.RestaurantAggregateConfigs
 {
     public class CouponConfiguration : IEntityTypeConfiguration<Coupon>
     {

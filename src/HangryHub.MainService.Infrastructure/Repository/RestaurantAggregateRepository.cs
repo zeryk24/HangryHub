@@ -15,7 +15,7 @@ namespace HangryHub.MainService.Infrastructure.Repository
     {
         public RestaurantAggregateRepository(MainDBContext dbContext) : base(dbContext) { }
 
-        public async Task<Restaurant?> FindByIdWithAllRelatedEntitiesAsync(RestaurantId id)
+        public async Task<Restaurant?> GetWithDetailsAsync(RestaurantId id)
         {
             var result = await GetBaseQuery()
                 .Where(a => a.Id ==  id)
@@ -23,16 +23,16 @@ namespace HangryHub.MainService.Infrastructure.Repository
             return result;
         }
 
-        public async Task<IEnumerable<Restaurant>> GetWithAllRelatedEntitiesAsync()
+        public async Task<IEnumerable<Restaurant>> GetAllWithDetailsAsync()
         {
             return await GetBaseQuery().ToListAsync();
         }
 
-        public async Task<IEnumerable<Restaurant>> GetWithAllRelatedEntitiesAsync(params RestaurantId[] ids)
+        public async Task<IEnumerable<Restaurant>> GetWithDetailsAsync(params RestaurantId[] ids)
         {
             if (ids == null || ids.Length == 0)
             {
-                return await GetWithAllRelatedEntitiesAsync();
+                return await GetAllWithDetailsAsync();
             }
 
             var result = await GetBaseQuery()

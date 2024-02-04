@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
 using HangryHub.MainService.Application.Repository;
-using HangryHub.MainService.Application.Restaurant.DTOs;
+using HangryHub.MainService.Application.Restaurant.DTOs.RestaurantAggregate;
 using Mapster;
 using MediatR;
 
@@ -17,7 +17,7 @@ namespace HangryHub.MainService.Application.Restaurant.Query.GetRestaurant
 
         public async Task<ErrorOr<RestaurantDto>> Handle(GetRestaurantQuery request, CancellationToken cancellationToken)
         {
-            var restaurant = await _restaurantRepository.FindByIdWithAllRelatedEntitiesAsync(request.RestaurantId);
+            var restaurant = await _restaurantRepository.GetWithDetailsAsync(request.RestaurantId);
             
             if (restaurant == null)
             {

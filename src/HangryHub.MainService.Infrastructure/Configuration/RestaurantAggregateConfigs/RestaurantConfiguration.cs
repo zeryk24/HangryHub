@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HangryHub.MainService.Infrastructure.Configuration
+namespace HangryHub.MainService.Infrastructure.Configuration.RestaurantAggregateConfigs
 {
     public class RestaurantConfiguration : IEntityTypeConfiguration<Restaurant>
     {

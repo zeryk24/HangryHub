@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
 using HangryHub.MainService.Infrastructure.Configuration.Constants;
 
-namespace HangryHub.MainService.Infrastructure.Configuration
+namespace HangryHub.MainService.Infrastructure.Configuration.RestaurantAggregateConfigs
 {
     public class RestaurantItemConfiguration : IEntityTypeConfiguration<RestaurantItem>
     {
