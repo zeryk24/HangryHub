@@ -1,6 +1,7 @@
 ﻿using HangryHub.MainService.Domain.RestaurantAggregate;
 using HangryHub.MainService.Domain.RestaurantAggregate.Entities;
 using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
+using HangryHub.MainService.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace HangryHub.MainService.Infrastructure.Repository
 
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MainDBContext).Assembly);
+            /*modelBuilder.ApplyConfigurationsFromAssembly(typeof(MainDBContext).Assembly);
 
             // Configure Restaurant
             var restaurant = modelBuilder.Entity<Restaurant>();
@@ -42,69 +43,76 @@ namespace HangryHub.MainService.Infrastructure.Repository
 
             // Configure RestaurantItem
             var item = modelBuilder.Entity<RestaurantItem>();
-            item.HasKey(x => x.Id);
+            item.HasKey(x => x.Restaurant);
             item.HasOne<Restaurant>() 
-                .WithMany(r => r.Items);
+                .WithMany(r => r.Items);*/
 
-            SeedDatabase(modelBuilder);
+            modelBuilder.ApplyConfiguration(new RestaurantConfiguration());
+            modelBuilder.ApplyConfiguration(new RestaurantItemConfiguration());
+            modelBuilder.ApplyConfiguration(new IngredientConfiguration());
+            modelBuilder.ApplyConfiguration(new AdditionalIngredientConfiguration());
+            modelBuilder.ApplyConfiguration(new CouponConfiguration());
+
+            // Seeding is practically fucked ... It seems like EFCore is completely dumbfucked what to do with Owned entities.
+            // In this case it fails like wildfire ...
+            /*SeedDatabase(modelBuilder);*/
         }
 
-        private void SeedDatabase(ModelBuilder modelBuilder)
+        /*private void SeedDatabase(ModelBuilder modelBuilder)
         {
             var restaurantGUID = new Guid("575094cf-45c3-45f4-95c3-5a4089e6c425");
             var restaurantId = new RestaurantId(restaurantGUID);
 
-            var restaurantLocationGUID = new Guid("c31fa625-50e5-4e64-99b6-8b0141672835");
-            var restaurantLocationId = new RestaurantLocationId(restaurantGUID);
-
             var restaurantItemGUID1 = new Guid("70607720-f720-4b5b-b6ed-c3b3e11cb90e");
-            var restaurantItemId1 = new RestaurantItemId(restaurantGUID);
+            var restaurantItemId1 = new RestaurantItemId(restaurantItemGUID1);
 
             var restaurantItemGUID2 = new Guid("6a090d57-e8f2-4541-9d1a-88db8232f0f9");
-            var restaurantItemId2 = new RestaurantItemId(restaurantGUID);
+            var restaurantItemId2 = new RestaurantItemId(restaurantItemGUID2);
 
-            var restaurantLocations = new List<RestaurantLocation>()
+            var restaurantLocations = new List<RestaurantDetail>()
             {
                 new()
                 {
-                    AddressLine1 = "Pepikova 11",
-                    AddressLine2 = "Pepikov 69420",
-                    Country = "Japan",
+                    Address = "Pepikova 11",
+                    Contact = "Pepikov 69420",
+                    Note = "Japan",
                 }
             };
 
+
+            var restaurants = new List<Restaurant>()
+            {
+                new (restaurantId)
+                {
+                    Name = "Pepikova Pizzoska",
+                    Detail = restaurantLocations[0],
+                },
+            };
+
+            modelBuilder.Entity<Restaurant>()
+                .HasData(restaurants);
+
             var restaurantItems = new List<RestaurantItem>()
             {
-                new(restaurantItemGUID1)
+                new(restaurantItemId1)
                 {
+                    RestaurantId = restaurantId,
                     Name = "Pizza 1",
                     Description = "Biggus pizzus 2mm",
                     Price = 10,
                 },
 
-                new(restaurantItemGUID2)
+                new(restaurantItemId2)
                 {
+                    RestaurantId = restaurantId,
                     Name = "Pizza 2",
                     Description = "Biggus pizzus 199cm",
                     Price = 10000,
                 },
             };
 
-
-            var restaurants = new List<Restaurant>()
-            {
-                new (restaurantId.Value)
-                {
-                    Name = "Pepikova Pizzoska",
-                    Location = restaurantLocations[0],
-                },
-            };
-
-            /*modelBuilder.Entity<Restaurant>()
-                .HasData(restaurants);
-
             modelBuilder.Entity<RestaurantItem>()
-                .HasData(restaurantItems);*/
-        }
+                .HasData(restaurantItems);
+        }*/
     }
 }

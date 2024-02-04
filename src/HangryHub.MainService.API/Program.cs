@@ -1,4 +1,5 @@
 using HangryHub.MainService.Infrastructure;
+using HangryHub.MainService.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,5 +26,19 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetService<MainDBContext>();
+
+    if (context == null)
+    {
+        throw new ArgumentException("DI was not able to resolve DBContext. This seems like a mojor issue ... Thank god that we are in the development ;)");
+    }
+
+    await DatabaseSeeder.SeedDatabaseAsync(context);
+}
 
 app.Run();

@@ -18,7 +18,7 @@ namespace HangryHub.MainService.Infrastructure
         {
             ApplicationDependencyInjection.InstallApplication(services);
 
-            var builder = new SqliteConnectionStringBuilder("Data Source=main_test1.db");
+            var builder = new SqliteConnectionStringBuilder("Data Source=main_test_v1.db");
             var baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
             builder.DataSource = Path.Combine(baseDir, builder.DataSource);
@@ -31,6 +31,7 @@ namespace HangryHub.MainService.Infrastructure
 
             services.AddScoped<IRepository<Domain.RestaurantAggregate.Restaurant>, EFRepository<Domain.RestaurantAggregate.Restaurant>>();
             services.AddScoped<IRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>, EFRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>>();
+            services.AddScoped<IRestaurantAggregateRepository, RestaurantAggregateRepository>();
             /*services.AddTransient<IListAvaiableQueryService, ListAvaiableQueryService>();
             services.AddTransient<IDeliveryStateService, DeliveryStateService>();*/
         }

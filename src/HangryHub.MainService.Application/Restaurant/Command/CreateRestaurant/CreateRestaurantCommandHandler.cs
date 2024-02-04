@@ -1,10 +1,12 @@
 ﻿using ErrorOr;
 using HangryHub.MainService.Application.Repository;
+using HangryHub.MainService.Application.Restaurant.DTOs;
+using Mapster;
 using MediatR;
 
 namespace HangryHub.MainService.Application.Restaurant.Command.CreateRestaurant
 {
-    internal class CreateRestaurantCommandHandler : IRequestHandler<CreateRestaurantCommand, ErrorOr<Domain.RestaurantAggregate.Restaurant>>
+    public class CreateRestaurantCommandHandler : IRequestHandler<CreateRestaurantCommand, ErrorOr<RestaurantDto>>
     {
         private readonly IRepository<Domain.RestaurantAggregate.Restaurant> _restaurantRepository;
 
@@ -13,28 +15,28 @@ namespace HangryHub.MainService.Application.Restaurant.Command.CreateRestaurant
             _restaurantRepository = restaurantRepository;
         }
 
-        public async Task<ErrorOr<Domain.RestaurantAggregate.Restaurant>> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<RestaurantDto>> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
         {
             var restaurantId = new Domain.RestaurantAggregate.ValueObjects.RestaurantId(Guid.NewGuid());
-            var restaurantLocationId = new Domain.RestaurantAggregate.ValueObjects.RestaurantLocationId(Guid.NewGuid());
-            var location = new Domain.RestaurantAggregate.Entities.RestaurantLocation()
+            
+            var detail = new Domain.RestaurantAggregate.Entities.RestaurantDetail()
             {
-                AddressLine1 = request.AddressLine1,
-                AddressLine2 = request.AddressLine2,
-                Country = request.Country,
+                Address = request.Address,
+                Contact = request.Contact,
+                Note = request.Note,
             };
 
-            var restaurant = new Domain.RestaurantAggregate.Restaurant(restaurantId.Value)
+            var restaurant = new Domain.RestaurantAggregate.Restaurant(restaurantId)
             {
                 Name = request.Name,
-                Location = location,
+                Detail = detail,
             };
 
             _restaurantRepository.Insert(restaurant);
 
             await _restaurantRepository.SaveChangesAsync();
 
-            return restaurant;
+            return restaurant.Adapt<RestaurantDto>();
         }
     }
 }

@@ -3,8 +3,8 @@
     public class RestaurantCreateModel
     {
         public required string Name { get; set; }
-        public required string AddressLine1 { get; set; }
-        public required string AddressLine2 { get; set; }
-        public required string Country { get; set; }
+        public required string Address { get; set; }
+        public required string Contact { get; set; }
+        public required string Note { get; set; }
     }
 }

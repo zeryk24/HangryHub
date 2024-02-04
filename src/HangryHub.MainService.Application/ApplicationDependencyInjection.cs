@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using HangryHub.MainService.Application.MapsterMappingConfigs;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace HangryHub.MainService.Application
         {
             var assembly = Assembly.GetExecutingAssembly();
             services.InstallMediatr(assembly);
+            RestaurantMapperConfig.RegisterMappings();
         }
 
         private static void InstallMediatr(this IServiceCollection services, Assembly assembly)

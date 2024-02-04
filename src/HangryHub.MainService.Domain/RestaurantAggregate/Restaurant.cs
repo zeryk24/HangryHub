@@ -3,16 +3,20 @@ using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
 
 namespace HangryHub.MainService.Domain.RestaurantAggregate
 {
-    public class Restaurant : AggregateRoot<Guid>
+    public class Restaurant : AggregateRoot<RestaurantId>
     {
-        public Restaurant(Guid id) : base(id)
+        private Restaurant() { }
+
+        public Restaurant(RestaurantId id) : base(id)
         {
         }
 
         public required string Name { get; set; }
 
-        public required RestaurantLocation Location { get; set; }
+        public required RestaurantDetail Detail { get; set; }
 
-        public IEnumerable<RestaurantItem> Items { get; set; } = new List<RestaurantItem>();
+        public virtual IEnumerable<RestaurantItem> Items { get; set; } = new List<RestaurantItem>();
+
+        public virtual IEnumerable<Coupon> AvailableCoupons { get; set; } = new List<Coupon>();
     }
 }

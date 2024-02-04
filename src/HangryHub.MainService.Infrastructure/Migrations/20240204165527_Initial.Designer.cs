@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HangryHub.MainService.Infrastructure.Migrations
 {
     [DbContext(typeof(MainDBContext))]
-    [Migration("20240203052435_Init")]
-    partial class Init
+    [Migration("20240204165527_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,8 +23,8 @@ namespace HangryHub.MainService.Infrastructure.Migrations
             modelBuilder.Entity("HangryHub.MainService.Domain.RestaurantAggregate.Entities.RestaurantItem", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("RestaurantItemId");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -37,21 +37,22 @@ namespace HangryHub.MainService.Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("RestaurantId")
-                        .HasColumnType("TEXT");
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("RestaurantId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RestaurantId");
 
-                    b.ToTable("RestaurantItems");
+                    b.ToTable("RestaurantItems", (string)null);
                 });
 
             modelBuilder.Entity("HangryHub.MainService.Domain.RestaurantAggregate.Restaurant", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("RestaurantId");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -59,32 +60,36 @@ namespace HangryHub.MainService.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Restaurants");
+                    b.ToTable("Restaurants", (string)null);
                 });
 
             modelBuilder.Entity("HangryHub.MainService.Domain.RestaurantAggregate.Entities.RestaurantItem", b =>
                 {
-                    b.HasOne("HangryHub.MainService.Domain.RestaurantAggregate.Restaurant", null)
+                    b.HasOne("HangryHub.MainService.Domain.RestaurantAggregate.Restaurant", "Restaurant")
                         .WithMany("Items")
-                        .HasForeignKey("RestaurantId");
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
                 });
 
             modelBuilder.Entity("HangryHub.MainService.Domain.RestaurantAggregate.Restaurant", b =>
                 {
-                    b.OwnsOne("HangryHub.MainService.Domain.RestaurantAggregate.Entities.RestaurantLocation", "Location", b1 =>
+                    b.OwnsOne("HangryHub.MainService.Domain.RestaurantAggregate.Entities.RestaurantDetail", "Detail", b1 =>
                         {
                             b1.Property<Guid>("RestaurantId")
                                 .HasColumnType("TEXT");
 
-                            b1.Property<string>("AddressLine1")
+                            b1.Property<string>("Address")
                                 .IsRequired()
                                 .HasColumnType("TEXT");
 
-                            b1.Property<string>("AddressLine2")
+                            b1.Property<string>("Contact")
                                 .IsRequired()
                                 .HasColumnType("TEXT");
 
-                            b1.Property<string>("Country")
+                            b1.Property<string>("Note")
                                 .IsRequired()
                                 .HasColumnType("TEXT");
 
@@ -96,7 +101,7 @@ namespace HangryHub.MainService.Infrastructure.Migrations
                                 .HasForeignKey("RestaurantId");
                         });
 
-                    b.Navigation("Location")
+                    b.Navigation("Detail")
                         .IsRequired();
                 });
 

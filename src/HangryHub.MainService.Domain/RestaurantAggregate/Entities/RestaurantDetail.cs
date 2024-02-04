@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace HangryHub.MainService.Domain.RestaurantAggregate.Entities
 {
-    public class RestaurantLocation
+    public class RestaurantDetail
     {
-        public required string AddressLine1 { get; set; }
-        public required string AddressLine2 { get; set; }
-        public required string Country { get; set; }
+        public required string Address { get; set; }
+        public required string Contact { get; set; }
+        public required string Note { get; set; }
     }
 }

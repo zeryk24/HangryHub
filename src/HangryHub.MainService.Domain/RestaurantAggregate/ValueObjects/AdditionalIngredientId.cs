@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects
 {
-    public class RestaurantLocationId : ValueObject
+    public class AdditionalIngredientId(Guid value) : ValueObject
     {
-        public Guid Value { get; set; }
-
-        public RestaurantLocationId(Guid value)
-        {
-            Value = value;
-        }
+        public Guid Value { get; set; } = value;
 
         protected override IEnumerable<object?> GetEqualityComponents()
         {
