@@ -31,13 +31,19 @@ namespace HangryHub.OrderService.Infrastructure
             services.AddTransient<IReadyOrderService, ReadyOrderService>();
             services.AddTransient<ICheckStatusOrderService, CheckStatusOrderService>();
 
+            var rabbitMqHost = Environment.GetEnvironmentVariable("RABBITHOST");
+            if (rabbitMqHost == null)
+            {
+                rabbitMqHost = "localhost";
+            }
+
             // rabbit mq
             services.AddMassTransit(x =>
             {
                 // x.AddConumer(...) 
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.Host("rabbitmq", h => {
+                    cfg.Host(rabbitMqHost, h => {
 
                         h.Username("guest");
                         h.Password("guest");
