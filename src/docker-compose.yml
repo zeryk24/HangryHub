@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  hangryhub.deliveryservice.api:
+    image: ${DOCKER_REGISTRY-}hangryhubdeliveryserviceapi
+    build:
+      context: .
+      dockerfile: Backend/HangryHub.DeliveryService/HangryHub.DeliveryService.API/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITHOST=rabbitmq
+
+
+  hangryhub.orderservice.api:
+    image: ${DOCKER_REGISTRY-}hangryhuborderserviceapi
+    build:
+      context: .
+      dockerfile: Backend/HangryHub.OrderService/HangryHub.OrderService.API/Dockerfile
+    depends_on:
+     - rabbitmq
+    environment:
+     - RABBITHOST=rabbitmq
+    ports:
+      - "8081:8080"
+
+  rabbitmq:
+    image: masstransit/rabbitmq:latest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "15692:15692"
+
+
