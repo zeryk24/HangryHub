@@ -1,4 +1,5 @@
-﻿using HangryHub.OrderService.Core.Interfaces;
+﻿using HangryHub.OderService.UseCases.Order.DTOs;
+using HangryHub.OrderService.Core.Interfaces;
 using Mapster;
 using MediatR;
 

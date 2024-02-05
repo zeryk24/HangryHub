@@ -1,4 +1,5 @@
 ﻿using HangryHub.OrderService.Core.Interfaces;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.OrderItemEntity.ValueObjects;
 
 namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
 {
@@ -18,7 +19,15 @@ namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
                 new Core.OrderAggregate.ValueObjects.Decline(false, null),
                 new Core.OrderAggregate.ValueObjects.Ready(false, null),
                 null,
-                new Core.OrderAggregate.ValueObjects.UserId(Guid.Empty));
+                new Core.OrderAggregate.ValueObjects.UserId(Guid.Empty),
+                new List<Core.OrderAggregate.Entities.OrderItemEntity.OrderItem>
+                {
+                    new Core.OrderAggregate.Entities.OrderItemEntity.OrderItem(
+                        new RestaurantItemId(Guid.Empty),
+                    new ItemName("Watter"),
+                    new ItemQuantity(1),
+                    new ItemPrice(20))
+                });
             await OrderRepository.CreateAsync(orderAggregate);
             await OrderRepository.SaveAsync();
             return orderAggregate;

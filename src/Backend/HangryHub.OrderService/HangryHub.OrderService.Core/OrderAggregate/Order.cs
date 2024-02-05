@@ -1,5 +1,6 @@
 ﻿using HangryHub.OrderService.Core.Common;
 using HangryHub.OrderService.Core.OrderAggregate.Entities.CouponEntity;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.OrderItemEntity;
 using HangryHub.OrderService.Core.OrderAggregate.Enums;
 using HangryHub.OrderService.Core.OrderAggregate.ValueObjects;
 
@@ -14,8 +15,9 @@ namespace HangryHub.OrderService.Core.OrderAggregate
         public OrderState OrderState { get; private set; }
         public UserId UserId { get; set; }
         public Coupon? Coupon { get; private set; }
+        public List<OrderItem> Items { get; set; }
 
-        public Order(Price euro, Accept orderAccepted, Decline orderDeclines, Ready orderReady, Coupon? coupon, UserId userId)
+        public Order(Price euro, Accept orderAccepted, Decline orderDeclines, Ready orderReady, Coupon? coupon, UserId userId, List<OrderItem> items)
         {
             PriceEuro = euro;
             OrderAccepted = orderAccepted;
@@ -24,6 +26,7 @@ namespace HangryHub.OrderService.Core.OrderAggregate
             OrderState = OrderState.NotAccepted;
             Coupon = coupon;
             UserId = userId;
+            Items = items;
         }
 
         private Order() { }

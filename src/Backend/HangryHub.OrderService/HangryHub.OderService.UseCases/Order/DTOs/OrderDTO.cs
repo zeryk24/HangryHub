@@ -1,4 +1,4 @@
-﻿namespace HangryHub.OderService.UseCases.Order
+﻿namespace HangryHub.OderService.UseCases.Order.DTOs
 {
     public class OrderDTO
     {
@@ -10,5 +10,6 @@
         public OrderStatusDTO OrderState { get; set; }
         public CouponDTO? Coupon { get; set; }
         public UserIdDTO UserId { get; set; }
+        public List<OrderItemDTO> Items { get; set; }
     }
 }

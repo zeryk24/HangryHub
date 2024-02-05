@@ -1,4 +1,4 @@
-﻿namespace HangryHub.OderService.UseCases.Order
+﻿namespace HangryHub.OderService.UseCases.Order.DTOs
 {
     public class UserIdDTO
     {

@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using HangryHub.OderService.UseCases.Order.DTOs;
 using HangryHub.OrderService.Core.Interfaces;
 using Mapster;
 using MassTransit;
