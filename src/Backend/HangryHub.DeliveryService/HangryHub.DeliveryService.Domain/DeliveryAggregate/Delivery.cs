@@ -6,11 +6,6 @@ namespace HangryHub.DeliveryService.Domain.DeliveryAggregate
 {
     public class Delivery : AggregateRoot
     {
-        private Order order;
-        private Customer customer;
-        private object value;
-        private DeliveryState notAsigned;
-
         public RestaurantDeliveryInfo Restaurant { get; private set; }
         public Order Order { get; private set; }
         public Customer Customer { get; private set; }
