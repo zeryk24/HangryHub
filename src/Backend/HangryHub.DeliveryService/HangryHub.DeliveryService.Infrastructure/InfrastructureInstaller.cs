@@ -73,10 +73,11 @@ namespace HangryHub.DeliveryService.Infrastructure
                 context.Add(
                             new Domain.DeliveryAggregate.Delivery(
                             Guid.NewGuid(),
-                            new Restaurant(
+                            new RestaurantDeliveryInfo(     
                                 new RestaurantId(Guid.NewGuid()),
                                 new RestaurantContact("777666777", "777666445"),
-                                new RestaurantLocation("Ulice 1", "Az v druhem patre!")
+                                new RestaurantLocation("Ulice 1", "Az v druhem patre!"),
+                                "Bob's Burgers"
                             ),
                             new Order(
                                 new OrderId(Guid.NewGuid()),

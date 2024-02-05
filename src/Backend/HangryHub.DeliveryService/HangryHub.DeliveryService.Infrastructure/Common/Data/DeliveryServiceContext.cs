@@ -17,6 +17,7 @@ namespace HangryHub.DeliveryService.Infrastructure.Common.Data
 
 
         public DbSet<Domain.DeliveryAggregate.Delivery> Deliveries { get; set; }
+        public DbSet<Domain.RestaurantAggregate.Restaurant> Restaurants { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,7 +51,9 @@ namespace HangryHub.DeliveryService.Infrastructure.Common.Data
             restaurant.OwnsOne(x => x.Id);
 
 
-         
+            var restaurantAggregate = modelBuilder.Entity<Domain.RestaurantAggregate.Restaurant>();
+            restaurantAggregate.HasKey(x => x.Id);
+
         }
         
        
