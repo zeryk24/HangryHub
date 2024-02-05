@@ -10,6 +10,7 @@
         public OrderStatusDTO OrderState { get; set; }
         public CouponDTO? Coupon { get; set; }
         public UserIdDTO UserId { get; set; }
+        public RestaurantIdDTO RestaurantId { get; set; }
         public List<OrderItemDTO> Items { get; set; }
     }
 }

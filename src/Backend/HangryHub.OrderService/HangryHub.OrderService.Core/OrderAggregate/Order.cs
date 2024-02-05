@@ -13,11 +13,12 @@ namespace HangryHub.OrderService.Core.OrderAggregate
         public Decline OrderDeclined { get; private set; }
         public Ready OrderReady { get; private set; }
         public OrderState OrderState { get; private set; }
-        public UserId UserId { get; set; }
+        public RestaurantId RestaurantId { get; private set; }
+        public UserId UserId { get; private set; }
         public Coupon? Coupon { get; private set; }
-        public List<OrderItem> Items { get; set; }
+        public List<OrderItem> Items { get; private set; }
 
-        public Order(Price euro, Accept orderAccepted, Decline orderDeclines, Ready orderReady, Coupon? coupon, UserId userId, List<OrderItem> items)
+        public Order(Price euro, Accept orderAccepted, Decline orderDeclines, Ready orderReady, Coupon? coupon, UserId userId, List<OrderItem> items, RestaurantId restaurantId)
         {
             PriceEuro = euro;
             OrderAccepted = orderAccepted;
@@ -27,6 +28,7 @@ namespace HangryHub.OrderService.Core.OrderAggregate
             Coupon = coupon;
             UserId = userId;
             Items = items;
+            RestaurantId = restaurantId;
         }
 
         private Order() { }

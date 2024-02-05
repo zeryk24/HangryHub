@@ -30,7 +30,8 @@ namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
                     new ItemPrice(20), new List<Core.OrderAggregate.Entities.IngredientEntity.ExtraIngredient>(){
                         new Core.OrderAggregate.Entities.IngredientEntity.ExtraIngredient(new IngredientName("Bubble"), new IngredientQuantity(50)) }
                     )
-                });
+                },
+                new Core.OrderAggregate.ValueObjects.RestaurantId(Guid.Empty));
             await OrderRepository.CreateAsync(orderAggregate);
             await OrderRepository.SaveAsync();
             return orderAggregate;
