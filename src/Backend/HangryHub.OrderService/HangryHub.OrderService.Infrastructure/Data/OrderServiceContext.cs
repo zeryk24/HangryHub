@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HangryHub.OrderService.Core.OrderAggregate.Entities.CouponEntity;
+using Microsoft.EntityFrameworkCore;
 
 namespace HangryHub.OrderService.Infrastructure.Data
 {
@@ -21,6 +22,13 @@ namespace HangryHub.OrderService.Infrastructure.Data
             var accept = order.OwnsOne(o => o.OrderAccepted);
             var decline = order.OwnsOne(o => o.OrderDeclined);
             var ready = order.OwnsOne(o => o.OrderReady);
+
+            var coupon = modelBuilder.Entity<Coupon>();
+            
+            coupon.HasKey(c => c.Id);
+            coupon.OwnsOne(c => c.Price);
+            coupon.OwnsOne(c => c.Name);
+            order.HasOne(o => o.Coupon);
         }
     }
 }
