@@ -22,6 +22,7 @@ namespace HangryHub.OrderService.Infrastructure.Data
             var accept = order.OwnsOne(o => o.OrderAccepted);
             var decline = order.OwnsOne(o => o.OrderDeclined);
             var ready = order.OwnsOne(o => o.OrderReady);
+            order.OwnsOne(o => o.UserId);
 
             var coupon = modelBuilder.Entity<Coupon>();
             

@@ -9,5 +9,6 @@
         public OrderReadyDTO OrderReady { get; set; }
         public OrderStatusDTO OrderState { get; set; }
         public CouponDTO? Coupon { get; set; }
+        public UserIdDTO UserId { get; set; }
     }
 }
