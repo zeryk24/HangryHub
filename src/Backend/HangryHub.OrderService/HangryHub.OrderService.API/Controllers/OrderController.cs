@@ -4,6 +4,7 @@ using HangryHub.OderService.UseCases.Order.Create;
 using HangryHub.OderService.UseCases.Order.Decline;
 using HangryHub.OderService.UseCases.Order.DTOs;
 using HangryHub.OderService.UseCases.Order.GetById;
+using HangryHub.OderService.UseCases.Order.GetByRestaurant;
 using HangryHub.OderService.UseCases.Order.Ready;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,17 @@ namespace HangryHub.OrderService.API.Controllers
         public async Task<OrderDTO> Get()
         {
             return await mediator.Send(new GetOrderByIdQuery(new Guid()));
+        }
+
+        [HttpGet("orders")]
+        public async Task<ActionResult<List<OrderDTO>>> GetOrdersInRestaurant(Guid RestaurantId)
+        {
+            var result = await mediator.Send(new GetByRestaurantQuery(RestaurantId));
+            if (result.IsError)
+            {
+                return NotFound();
+            }
+            return Ok(result.Value);
         }
 
         [HttpPost]

@@ -1,12 +1,15 @@
 ﻿using HangryHub.OrderService.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace HangryHub.OrderService.Infrastructure.Data
 {
     public class EFRepository<TAggregate> : IRepository<TAggregate> where TAggregate : class
     {
         private readonly DbContext context;
-        private readonly DbSet<TAggregate> aggregateSet;
+        protected readonly DbSet<TAggregate> aggregateSet;
+        protected List<Expression<Func<TAggregate, object>>> Includes = new List<Expression<Func<TAggregate, object>>>();
 
         public EFRepository(DbContext context)
         {
@@ -19,9 +22,15 @@ namespace HangryHub.OrderService.Infrastructure.Data
             await aggregateSet.AddAsync(entity);
         }
 
-        public async Task<IList<TAggregate>> GetAllAsync()
+        public virtual async Task<IList<TAggregate>> GetAllAsync()
         {
-            return await aggregateSet.ToListAsync();
+            //return await aggregateSet.ToListAsync();
+            var set = aggregateSet.AsNoTracking();
+            foreach (var include in Includes)
+            {
+                set = set.Include(include);
+            }
+            return await set.AsNoTracking().ToListAsync();
         }
 
         public async Task<TAggregate?> GetByIdAsync(object id)

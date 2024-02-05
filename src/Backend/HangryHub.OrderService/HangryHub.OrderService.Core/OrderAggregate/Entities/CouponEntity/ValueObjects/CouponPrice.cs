@@ -6,7 +6,7 @@ namespace HangryHub.OrderService.Core.OrderAggregate.Entities.CouponEntity.Value
     {
         public double EuroPrice { get; private set; }
 
-        public CouponPrice(int euroPrice)
+        public CouponPrice(double euroPrice)
         {
             EuroPrice = euroPrice;
         }
