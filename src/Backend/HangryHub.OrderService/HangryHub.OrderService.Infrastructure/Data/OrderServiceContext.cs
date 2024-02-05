@@ -1,4 +1,5 @@
 ﻿using HangryHub.OrderService.Core.OrderAggregate.Entities.CouponEntity;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.IngredientEntity;
 using HangryHub.OrderService.Core.OrderAggregate.Entities.OrderItemEntity;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +41,13 @@ namespace HangryHub.OrderService.Infrastructure.Data
             items.OwnsOne(i => i.RestaurantItemId);
             items.OwnsOne(i => i.Quantity);
             items.OwnsOne(i => i.Price);
+
+            var ingredients = modelBuilder.Entity<ExtraIngredient>();
+            items.HasMany(i => i.ExtraIngredients);
+
+            ingredients.OwnsOne(i => i.Quantity);
+            ingredients.OwnsOne(i => i.Name);
+            ingredients.HasKey(i => i.Id);
         }
     }
 }

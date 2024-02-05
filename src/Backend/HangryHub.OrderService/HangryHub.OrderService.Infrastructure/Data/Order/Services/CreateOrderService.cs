@@ -1,4 +1,5 @@
 ﻿using HangryHub.OrderService.Core.Interfaces;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.IngredientEntity.ValueObjects;
 using HangryHub.OrderService.Core.OrderAggregate.Entities.OrderItemEntity.ValueObjects;
 
 namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
@@ -26,7 +27,9 @@ namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
                         new RestaurantItemId(Guid.Empty),
                     new ItemName("Watter"),
                     new ItemQuantity(1),
-                    new ItemPrice(20))
+                    new ItemPrice(20), new List<Core.OrderAggregate.Entities.IngredientEntity.ExtraIngredient>(){
+                        new Core.OrderAggregate.Entities.IngredientEntity.ExtraIngredient(new IngredientName("Bubble"), new IngredientQuantity(50)) }
+                    )
                 });
             await OrderRepository.CreateAsync(orderAggregate);
             await OrderRepository.SaveAsync();
