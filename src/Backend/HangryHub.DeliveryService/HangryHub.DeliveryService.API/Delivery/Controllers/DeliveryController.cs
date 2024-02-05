@@ -1,10 +1,10 @@
-﻿using HangryHub.DeliveryService.Application.Delivery;
-using HangryHub.DeliveryService.Application.Delivery.DeliveryStateUpdate;
-using HangryHub.DeliveryService.Application.Delivery.Get;
-using HangryHub.DeliveryService.Application.Delivery.GetNavigation;
-using HangryHub.DeliveryService.Application.Delivery.GetState;
-using HangryHub.DeliveryService.Application.Delivery.ListAvaiable;
-using HangryHub.DeliveryService.Application.Delivery.Select;
+﻿using HangryHub.DeliveryService.Application.Delivery.Commands.Complete;
+using HangryHub.DeliveryService.Application.Delivery.Commands.Pickup;
+using HangryHub.DeliveryService.Application.Delivery.Commands.Select;
+using HangryHub.DeliveryService.Application.Delivery.Producers.DeliveryStateUpdate;
+using HangryHub.DeliveryService.Application.Delivery.Queries.GetNavigation;
+using HangryHub.DeliveryService.Application.Delivery.Queries.GetState;
+using HangryHub.DeliveryService.Application.Delivery.Queries.ListAvaiable;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

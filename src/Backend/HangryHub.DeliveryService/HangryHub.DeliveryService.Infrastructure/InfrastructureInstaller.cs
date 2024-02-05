@@ -1,7 +1,7 @@
 ﻿using HangryHub.DeliveryService.Application.Common;
-using HangryHub.DeliveryService.Application.Delivery.GetState;
-using HangryHub.DeliveryService.Application.Delivery.ListAvaiable;
-using HangryHub.DeliveryService.Application.Delivery.TestMessageConsumer;
+using HangryHub.DeliveryService.Application.Delivery.Consumers.TestMessageConsumer;
+using HangryHub.DeliveryService.Application.Delivery.Queries.GetState;
+using HangryHub.DeliveryService.Application.Delivery.Queries.ListAvaiable;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
@@ -79,7 +79,8 @@ namespace HangryHub.DeliveryService.Infrastructure
                                 new RestaurantLocation("Ulice 1", "Az v druhem patre!")
                             ),
                             new Order(
-                                new OrderId(Guid.NewGuid())
+                                new OrderId(Guid.NewGuid()),
+                                OrderState.Accepted
                             ),
                             new Customer(
                                 new CustomerId(Guid.NewGuid()),

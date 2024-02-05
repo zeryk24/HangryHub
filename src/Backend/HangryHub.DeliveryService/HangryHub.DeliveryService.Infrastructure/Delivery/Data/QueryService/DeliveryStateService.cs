@@ -1,5 +1,5 @@
 ﻿using HangryHub.DeliveryService.Application.Common;
-using HangryHub.DeliveryService.Application.Delivery.GetState;
+using HangryHub.DeliveryService.Application.Delivery.Queries.GetState;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
 using System;
 using System.Collections.Generic;

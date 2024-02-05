@@ -1,4 +1,5 @@
 ﻿using HangryHub.DeliveryService.Domain.Common;
+using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects;
 
 namespace HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities
@@ -6,10 +7,11 @@ namespace HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities
     public class Order : Entity
     {
         public OrderId Id { get; private set; } 
-
-        public Order(OrderId id)
+        public OrderState State { get; private set; }
+        public Order(OrderId id, OrderState state)
         {
             Id = id;
+            State = state;
         }
 
 

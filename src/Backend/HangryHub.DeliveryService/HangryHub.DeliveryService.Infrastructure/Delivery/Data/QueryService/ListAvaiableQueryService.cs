@@ -1,4 +1,4 @@
-﻿using HangryHub.DeliveryService.Application.Delivery.ListAvaiable;
+﻿using HangryHub.DeliveryService.Application.Delivery.Queries.ListAvaiable;
 using HangryHub.DeliveryService.Infrastructure.Common.Data;
 
 namespace HangryHub.DeliveryService.Infrastructure.Delivery.Data.QueryService
