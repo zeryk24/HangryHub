@@ -20,16 +20,25 @@ namespace HangryHub.OderService.UseCases.Order.Accept
 
         public async Task<ErrorOr<OrderDTO>> Handle(AcceptOrderCommand request, CancellationToken cancellationToken)
         {
-            var orderResult = await acceptOrderService.AcceptOrderAsync(request.Id);
-            if (orderResult.IsError)
+            try
             {
-                return orderResult.Errors;
+                var orderResult = await acceptOrderService.AcceptOrderAsync(request.Id);
+
+                if (orderResult.IsError)
+                {
+                    return orderResult.Errors;
+                }
+
+                var order = orderResult.Value;
+                await orderStatusChangeService.OrderStatusChangeAsync(order.Id, order.OrderState);
+
+                return order.Adapt<OrderDTO>();
             }
-
-            var order = orderResult.Value;
-            await orderStatusChangeService.OrderStatusChangeAsync(order.Id, order.OrderState);
-
-            return order.Adapt<OrderDTO>();
+            catch (ArgumentException)
+            {
+                return Error.Conflict();
+            }
+            
         }
     }
 }

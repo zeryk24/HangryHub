@@ -35,18 +35,33 @@ namespace HangryHub.OrderService.Core.OrderAggregate
 
         public void AcceptOrder()
         {
+            if (OrderAccepted.IsAccepted)
+            {
+                throw new ArgumentException("Order is already accepted");
+            }
+            
             OrderAccepted.AcceptOrder();
             OrderState = OrderState.Accepted;
         }
 
         public void DeclineOrder()
         {
+            if (OrderDeclined.IsDeclined)
+            {
+                throw new ArgumentException("Order is already declined");
+            }
+
             OrderDeclined.DeclineOrder();
             OrderState = OrderState.Declined;
         }
 
         public void OrderIsReady()
         {
+            if (OrderDeclined.IsDeclined)
+            {
+                throw new ArgumentException("Order is declined and can't be mark as ready");
+            }
+
             OrderReady.OrderIsReady();
             OrderState = OrderState.Ready;
         }

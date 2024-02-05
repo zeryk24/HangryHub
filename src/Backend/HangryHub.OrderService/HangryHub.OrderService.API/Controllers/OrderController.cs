@@ -50,6 +50,10 @@ namespace HangryHub.OrderService.API.Controllers
             var orderResult = await mediator.Send(new AcceptOrderCommand(id));
             if (orderResult.IsError)
             {
+                if (orderResult.Errors.Contains(ErrorOr.Error.Conflict()))
+                {
+                    return BadRequest();
+                }
                 return NotFound();
             }
             return Ok(orderResult.Value);
@@ -61,6 +65,10 @@ namespace HangryHub.OrderService.API.Controllers
             var orderResult = await mediator.Send(new DeclineOrderCommand(id));
             if (orderResult.IsError)
             {
+                if (orderResult.Errors.Contains(ErrorOr.Error.Conflict()))
+                {
+                    return BadRequest();
+                }
                 return NotFound();
             }
             return Ok(orderResult.Value);
@@ -72,6 +80,10 @@ namespace HangryHub.OrderService.API.Controllers
             var orderResult = await mediator.Send(new ReadyOrderCommand(id));
             if (orderResult.IsError)
             {
+                if (orderResult.Errors.Contains(ErrorOr.Error.Conflict()))
+                {
+                    return BadRequest();
+                }
                 return NotFound();
             }
             return Ok(orderResult.Value);
