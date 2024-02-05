@@ -3,7 +3,6 @@ using HangryHub.OderService.UseCases.Order.CheckStatus;
 using HangryHub.OderService.UseCases.Order.Create;
 using HangryHub.OderService.UseCases.Order.Decline;
 using HangryHub.OderService.UseCases.Order.DTOs;
-using HangryHub.OderService.UseCases.Order.GetById;
 using HangryHub.OderService.UseCases.Order.GetByRestaurant;
 using HangryHub.OderService.UseCases.Order.Ready;
 using MediatR;
@@ -26,12 +25,6 @@ namespace HangryHub.OrderService.API.Controllers
         public ActionResult<string> RunningTest()
         {
             return "Order Service is running";
-        }
-
-        [HttpGet]
-        public async Task<OrderDTO> Get()
-        {
-            return await mediator.Send(new GetOrderByIdQuery(new Guid()));
         }
 
         [HttpGet("orders")]

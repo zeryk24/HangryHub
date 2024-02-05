@@ -26,7 +26,6 @@ namespace HangryHub.OrderService.Infrastructure
 
             services.AddTransient<DbContext, OrderServiceContext>();
             services.AddTransient<IRepository<Core.OrderAggregate.Order>, Data.Order.OrderRepository>();
-            services.AddTransient<IGetOrderByIdService, GetOrderByIdService>();
             services.AddTransient<ICreateOrderService, CreateOrderService>();
             services.AddTransient<IAcceptOrderService, AcceptOrderService>();
             services.AddTransient<IDeclineOrderService, DeclineOrderService>();
