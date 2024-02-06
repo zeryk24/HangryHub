@@ -1,4 +1,6 @@
 ﻿using HangryHub.OrderService.Core.Common;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.CouponEntity;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.OrderItemEntity;
 using HangryHub.OrderService.Core.OrderAggregate.Enums;
 using HangryHub.OrderService.Core.OrderAggregate.ValueObjects;
 
@@ -11,32 +13,55 @@ namespace HangryHub.OrderService.Core.OrderAggregate
         public Decline OrderDeclined { get; private set; }
         public Ready OrderReady { get; private set; }
         public OrderState OrderState { get; private set; }
+        public RestaurantId RestaurantId { get; private set; }
+        public UserId UserId { get; private set; }
+        public Coupon? Coupon { get; private set; }
+        public List<OrderItem> Items { get; private set; }
 
-        public Order(Price euro, Accept orderAccepted, Decline orderDeclines, Ready orderReady)
+        public Order(Price euro, Accept orderAccepted, Decline orderDeclines, Ready orderReady, Coupon? coupon, UserId userId, List<OrderItem> items, RestaurantId restaurantId)
         {
             PriceEuro = euro;
             OrderAccepted = orderAccepted;
             OrderDeclined = orderDeclines;
             OrderReady = orderReady;
             OrderState = OrderState.NotAccepted;
+            Coupon = coupon;
+            UserId = userId;
+            Items = items;
+            RestaurantId = restaurantId;
         }
 
         private Order() { }
 
         public void AcceptOrder()
         {
+            if (OrderAccepted.IsAccepted)
+            {
+                throw new ArgumentException("Order is already accepted");
+            }
+            
             OrderAccepted.AcceptOrder();
             OrderState = OrderState.Accepted;
         }
 
         public void DeclineOrder()
         {
+            if (OrderDeclined.IsDeclined)
+            {
+                throw new ArgumentException("Order is already declined");
+            }
+
             OrderDeclined.DeclineOrder();
             OrderState = OrderState.Declined;
         }
 
         public void OrderIsReady()
         {
+            if (OrderDeclined.IsDeclined)
+            {
+                throw new ArgumentException("Order is declined and can't be mark as ready");
+            }
+
             OrderReady.OrderIsReady();
             OrderState = OrderState.Ready;
         }

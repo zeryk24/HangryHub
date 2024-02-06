@@ -3,6 +3,7 @@ using System;
 using HangryHub.OrderService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HangryHub.OrderService.Infrastructure.Migrations
 {
     [DbContext(typeof(OrderServiceContext))]
-    partial class OrderServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20240205142450_extraIngredients")]
+    partial class extraIngredients
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
@@ -330,22 +333,6 @@ namespace HangryHub.OrderService.Infrastructure.Migrations
                                 .HasForeignKey("OrderId");
                         });
 
-                    b.OwnsOne("HangryHub.OrderService.Core.OrderAggregate.ValueObjects.RestaurantId", "RestaurantId", b1 =>
-                        {
-                            b1.Property<Guid>("OrderId")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<Guid>("Id")
-                                .HasColumnType("TEXT");
-
-                            b1.HasKey("OrderId");
-
-                            b1.ToTable("Orders");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OrderId");
-                        });
-
                     b.OwnsOne("HangryHub.OrderService.Core.OrderAggregate.ValueObjects.UserId", "UserId", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
@@ -374,9 +361,6 @@ namespace HangryHub.OrderService.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("PriceEuro")
-                        .IsRequired();
-
-                    b.Navigation("RestaurantId")
                         .IsRequired();
 
                     b.Navigation("UserId")

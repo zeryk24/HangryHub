@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HangryHub.OrderService.Core.OrderAggregate.Entities.CouponEntity;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.IngredientEntity;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.OrderItemEntity;
+using Microsoft.EntityFrameworkCore;
 
 namespace HangryHub.OrderService.Infrastructure.Data
 {
@@ -21,6 +24,31 @@ namespace HangryHub.OrderService.Infrastructure.Data
             var accept = order.OwnsOne(o => o.OrderAccepted);
             var decline = order.OwnsOne(o => o.OrderDeclined);
             var ready = order.OwnsOne(o => o.OrderReady);
+            order.OwnsOne(o => o.UserId);
+            order.OwnsOne(o => o.RestaurantId);
+
+            var coupon = modelBuilder.Entity<Coupon>();
+            
+            coupon.HasKey(c => c.Id);
+            coupon.OwnsOne(c => c.Price);
+            coupon.OwnsOne(c => c.Name);
+            order.HasOne(o => o.Coupon);
+
+            var items = modelBuilder.Entity<OrderItem>();
+            order.HasMany(o => o.Items);
+
+            items.HasKey(i => i.Id);
+            items.OwnsOne(i => i.Name);
+            items.OwnsOne(i => i.RestaurantItemId);
+            items.OwnsOne(i => i.Quantity);
+            items.OwnsOne(i => i.Price);
+
+            var ingredients = modelBuilder.Entity<ExtraIngredient>();
+            items.HasMany(i => i.ExtraIngredients);
+
+            ingredients.OwnsOne(i => i.Quantity);
+            ingredients.OwnsOne(i => i.Name);
+            ingredients.HasKey(i => i.Id);
         }
     }
 }

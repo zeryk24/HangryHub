@@ -1,4 +1,6 @@
 ﻿using HangryHub.OrderService.Core.Interfaces;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.IngredientEntity.ValueObjects;
+using HangryHub.OrderService.Core.OrderAggregate.Entities.OrderItemEntity.ValueObjects;
 
 namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
 {
@@ -16,7 +18,20 @@ namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
             var orderAggregate = new Core.OrderAggregate.Order(new Core.OrderAggregate.ValueObjects.Price(euroPrice),
                 new Core.OrderAggregate.ValueObjects.Accept(false, null),
                 new Core.OrderAggregate.ValueObjects.Decline(false, null),
-                new Core.OrderAggregate.ValueObjects.Ready(false, null));
+                new Core.OrderAggregate.ValueObjects.Ready(false, null),
+                null,
+                new Core.OrderAggregate.ValueObjects.UserId(Guid.Empty),
+                new List<Core.OrderAggregate.Entities.OrderItemEntity.OrderItem>
+                {
+                    new Core.OrderAggregate.Entities.OrderItemEntity.OrderItem(
+                        new RestaurantItemId(Guid.Empty),
+                    new ItemName("Watter"),
+                    new ItemQuantity(1),
+                    new ItemPrice(20), new List<Core.OrderAggregate.Entities.IngredientEntity.ExtraIngredient>(){
+                        new Core.OrderAggregate.Entities.IngredientEntity.ExtraIngredient(new IngredientName("Bubble"), new IngredientQuantity(50)) }
+                    )
+                },
+                new Core.OrderAggregate.ValueObjects.RestaurantId(Guid.Empty));
             await OrderRepository.CreateAsync(orderAggregate);
             await OrderRepository.SaveAsync();
             return orderAggregate;
