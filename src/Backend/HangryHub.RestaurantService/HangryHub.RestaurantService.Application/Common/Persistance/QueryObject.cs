@@ -14,6 +14,9 @@ public abstract class QueryObject<TAggregate> : IQueryObject<TAggregate> where T
 
     public IQueryObject<TAggregate> Page(int page, int pageSize)
     {
+        if (page < 1 || pageSize < 1)
+            return this;
+
         _query = _query.Skip((page - 1) * pageSize).Take(pageSize);
         return this;
     }

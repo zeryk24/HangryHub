@@ -31,6 +31,29 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                     b.ToTable("Deliveries");
                 });
 
+            modelBuilder.Entity("HangryHub.DeliveryService.Domain.RestaurantAggregate.Restaurant", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Contact")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Restaurants");
+                });
+
             modelBuilder.Entity("HangryHub.DeliveryService.Domain.DeliveryAggregate.Delivery", b =>
                 {
                     b.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities.Customer", "Customer", b1 =>
@@ -180,6 +203,9 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                             b1.Property<Guid>("DeliveryId")
                                 .HasColumnType("TEXT");
 
+                            b1.Property<int>("State")
+                                .HasColumnType("INTEGER");
+
                             b1.HasKey("DeliveryId");
 
                             b1.ToTable("Deliveries");
@@ -207,9 +233,13 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                                 .IsRequired();
                         });
 
-                    b.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities.Restaurant", "Restaurant", b1 =>
+                    b.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities.RestaurantDeliveryInfo", "Restaurant", b1 =>
                         {
                             b1.Property<Guid>("DeliveryId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<string>("Name")
+                                .IsRequired()
                                 .HasColumnType("TEXT");
 
                             b1.HasKey("DeliveryId");
@@ -221,7 +251,7 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
 
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.RestaurantContact", "Contact", b2 =>
                                 {
-                                    b2.Property<Guid>("RestaurantDeliveryId")
+                                    b2.Property<Guid>("RestaurantDeliveryInfoDeliveryId")
                                         .HasColumnType("TEXT");
 
                                     b2.Property<string>("RealPhone")
@@ -232,33 +262,33 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                                         .IsRequired()
                                         .HasColumnType("TEXT");
 
-                                    b2.HasKey("RestaurantDeliveryId");
+                                    b2.HasKey("RestaurantDeliveryInfoDeliveryId");
 
                                     b2.ToTable("Deliveries");
 
                                     b2.WithOwner()
-                                        .HasForeignKey("RestaurantDeliveryId");
+                                        .HasForeignKey("RestaurantDeliveryInfoDeliveryId");
                                 });
 
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.RestaurantId", "Id", b2 =>
                                 {
-                                    b2.Property<Guid>("RestaurantDeliveryId")
+                                    b2.Property<Guid>("RestaurantDeliveryInfoDeliveryId")
                                         .HasColumnType("TEXT");
 
                                     b2.Property<Guid>("Id")
                                         .HasColumnType("TEXT");
 
-                                    b2.HasKey("RestaurantDeliveryId");
+                                    b2.HasKey("RestaurantDeliveryInfoDeliveryId");
 
                                     b2.ToTable("Deliveries");
 
                                     b2.WithOwner()
-                                        .HasForeignKey("RestaurantDeliveryId");
+                                        .HasForeignKey("RestaurantDeliveryInfoDeliveryId");
                                 });
 
                             b1.OwnsOne("HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects.RestaurantLocation", "Location", b2 =>
                                 {
-                                    b2.Property<Guid>("RestaurantDeliveryId")
+                                    b2.Property<Guid>("RestaurantDeliveryInfoDeliveryId")
                                         .HasColumnType("TEXT");
 
                                     b2.Property<string>("Address")
@@ -269,12 +299,12 @@ namespace HangryHub.DeliveryService.Infrastructure.Migrations
                                         .IsRequired()
                                         .HasColumnType("TEXT");
 
-                                    b2.HasKey("RestaurantDeliveryId");
+                                    b2.HasKey("RestaurantDeliveryInfoDeliveryId");
 
                                     b2.ToTable("Deliveries");
 
                                     b2.WithOwner()
-                                        .HasForeignKey("RestaurantDeliveryId");
+                                        .HasForeignKey("RestaurantDeliveryInfoDeliveryId");
                                 });
 
                             b1.Navigation("Contact")

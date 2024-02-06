@@ -39,6 +39,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangryHub.OderService.UseCases", "Backend\HangryHub.OrderService\HangryHub.OderService.UseCases\HangryHub.OderService.UseCases.csproj", "{B0302EF4-82E6-4124-AF66-E263924280A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangryHub.OrderService.Infrastructure", "Backend\HangryHub.OrderService\HangryHub.OrderService.Infrastructure\HangryHub.OrderService.Infrastructure.csproj", "{05455C85-037D-4E28-8003-1C52099D1551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangryHub.OrderService.Infrastructure", "Backend\HangryHub.OrderService\HangryHub.OrderService.Infrastructure\HangryHub.OrderService.Infrastructure.csproj", "{05455C85-037D-4E28-8003-1C52099D1551}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66EF6AA7-55FE-468B-A7DB-39D8B418B865}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangryHub.OrderService.Contracts", "Backend\HangryHub.OrderService\HangryHub.OrderService.Contracts\HangryHub.OrderService.Contracts.csproj", "{B5B5AA7E-2CE8-43FD-94EC-CC4B67E68A7D}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A6A68ED9-4D6E-4029-8F20-3C22B24AEA7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangryHub.MainService.Domain", "HangryHub.MainService.Domain\HangryHub.MainService.Domain.csproj", "{602CE65C-87DD-483C-8322-D286A2253D41}"
 EndProject
@@ -126,6 +133,14 @@ Global
 		{393CBC6D-18E1-445E-AC26-9269A6D9941F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{393CBC6D-18E1-445E-AC26-9269A6D9941F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{393CBC6D-18E1-445E-AC26-9269A6D9941F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5B5AA7E-2CE8-43FD-94EC-CC4B67E68A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5B5AA7E-2CE8-43FD-94EC-CC4B67E68A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5B5AA7E-2CE8-43FD-94EC-CC4B67E68A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5B5AA7E-2CE8-43FD-94EC-CC4B67E68A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A68ED9-4D6E-4029-8F20-3C22B24AEA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A68ED9-4D6E-4029-8F20-3C22B24AEA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A68ED9-4D6E-4029-8F20-3C22B24AEA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A68ED9-4D6E-4029-8F20-3C22B24AEA7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -153,6 +168,7 @@ Global
 		{E2B94480-33F9-40D5-A9E6-F82BBB7F8312} = {0D4ADA4F-0691-495A-8E7B-02281F43DD55}
 		{E65B9520-FDB0-4E99-B1E8-772AFD2A59CB} = {0D4ADA4F-0691-495A-8E7B-02281F43DD55}
 		{393CBC6D-18E1-445E-AC26-9269A6D9941F} = {0D4ADA4F-0691-495A-8E7B-02281F43DD55}
+		{B5B5AA7E-2CE8-43FD-94EC-CC4B67E68A7D} = {637717A4-8B45-4F5E-9DF9-4B42505B0A08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B14D0B25-791C-498D-B810-E2AB7E73BD9B}

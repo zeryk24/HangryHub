@@ -7,6 +7,7 @@
     <UserSecretsId>925fa1e4-1b99-4c27-b265-fe16692c1eff</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,10 +23,6 @@
   <ItemGroup>
     <ProjectReference Include="..\HangryHub.DeliveryService.Application\HangryHub.DeliveryService.Application.csproj" />
     <ProjectReference Include="..\HangryHub.DeliveryService.Infrastructure\HangryHub.DeliveryService.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="sqlitedb\" />
   </ItemGroup>
 
 </Project>

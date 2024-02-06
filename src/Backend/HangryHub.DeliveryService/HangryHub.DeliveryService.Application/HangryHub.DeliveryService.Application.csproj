@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.1.3" />
     <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HangryHub.OrderService\HangryHub.OrderService.Contracts\HangryHub.OrderService.Contracts.csproj" />
     <ProjectReference Include="..\HangryHub.DeliveryService.Domain\HangryHub.DeliveryService.Domain.csproj" />
   </ItemGroup>
 

@@ -6,7 +6,7 @@ namespace HangryHub.DeliveryService.Domain.DeliveryAggregate
 {
     public class Delivery : AggregateRoot
     {
-        public Restaurant Restaurant { get; private set; }
+        public RestaurantDeliveryInfo Restaurant { get; private set; }
         public Order Order { get; private set; }
         public Customer Customer { get; private set; }
         public Freelencer? Freelencer { get; private set; }
@@ -14,7 +14,7 @@ namespace HangryHub.DeliveryService.Domain.DeliveryAggregate
         public DeliveryState State { get; private set; }
 
 
-        public Delivery(Guid id, Restaurant restaurant, Order order, Customer customer, Freelencer? freelencer, DeliveryState state) : base(id)
+        public Delivery(Guid id, RestaurantDeliveryInfo restaurant, Order order, Customer customer, Freelencer? freelencer, DeliveryState state) : base(id)
         {
             Restaurant = restaurant;
             Order = order;
@@ -45,5 +45,6 @@ namespace HangryHub.DeliveryService.Domain.DeliveryAggregate
         {
 
         }
+
     }
 }
