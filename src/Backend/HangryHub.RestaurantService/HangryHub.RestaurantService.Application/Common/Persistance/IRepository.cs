@@ -2,7 +2,7 @@
 
 public interface IRepository<TAggregate> where TAggregate : class
 {
-    Task<TAggregate> InsertAsync(TAggregate entity);
+    Task<TAggregate> InsertAsync(TAggregate entity, CancellationToken cancellationToken);
     Task InsertRangeAsync(List<TAggregate> entity);
     void Update(TAggregate entity);
     Task<bool> RemoveAsync(object id);

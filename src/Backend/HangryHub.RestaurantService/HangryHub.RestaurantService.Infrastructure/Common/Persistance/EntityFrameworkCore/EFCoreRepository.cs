@@ -17,9 +17,9 @@ public class EFCoreRepository<TAggregate> : IRepository<TAggregate> where TAggre
         _dbSet = _context.Set<TAggregate>();
     }
 
-    public async Task<TAggregate> InsertAsync(TAggregate entity)
+    public async Task<TAggregate> InsertAsync(TAggregate entity, CancellationToken cancellationToken)
     {
-        await _dbSet.AddAsync(entity);
+        await _dbSet.AddAsync(entity, cancellationToken);
         return entity;
     }
 
