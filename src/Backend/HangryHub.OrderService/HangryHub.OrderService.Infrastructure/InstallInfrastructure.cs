@@ -91,9 +91,6 @@ namespace HangryHub.OrderService.Infrastructure
 
                 var order1 = new Order(
                     new Price(10),
-                    new Accept(true, DateTime.Now),
-                    new Decline(false, null),
-                    new Ready(false, null),
                     new Coupon(
                     new Core.OrderAggregate.Entities.CouponEntity.ValueObjects.CouponName("Black friday"),
                     new Core.OrderAggregate.Entities.CouponEntity.ValueObjects.CouponPrice(5)

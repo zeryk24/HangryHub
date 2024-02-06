@@ -4,9 +4,6 @@
     {
         public Guid Id { get; set; }
         public PriceDTO PriceEuro { get; set; }
-        public AcceptDTO OrderAccepted { get; set; }
-        public DeclineDTO OrderDeclined { get; set; }
-        public OrderReadyDTO OrderReady { get; set; }
         public OrderStatusDTO OrderState { get; set; }
         public CouponDTO? Coupon { get; set; }
         public UserIdDTO UserId { get; set; }

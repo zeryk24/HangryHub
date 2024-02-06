@@ -16,9 +16,6 @@ namespace HangryHub.OrderService.Infrastructure.Data.Order.Services
         public async Task<Core.OrderAggregate.Order> CreateOrderAsync(double euroPrice)
         {
             var orderAggregate = new Core.OrderAggregate.Order(new Core.OrderAggregate.ValueObjects.Price(euroPrice),
-                new Core.OrderAggregate.ValueObjects.Accept(false, null),
-                new Core.OrderAggregate.ValueObjects.Decline(false, null),
-                new Core.OrderAggregate.ValueObjects.Ready(false, null),
                 null,
                 new Core.OrderAggregate.ValueObjects.UserId(Guid.Empty),
                 new List<Core.OrderAggregate.Entities.OrderItemEntity.OrderItem>

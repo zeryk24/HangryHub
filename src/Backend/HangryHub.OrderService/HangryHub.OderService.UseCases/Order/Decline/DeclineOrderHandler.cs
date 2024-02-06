@@ -6,8 +6,17 @@ using MediatR;
 
 namespace HangryHub.OderService.UseCases.Order.Decline
 {
-    public class DeclineOrderHandler(IDeclineOrderService declineOrderService) : IRequestHandler<DeclineOrderCommand, ErrorOr<OrderDTO>>
+    public class DeclineOrderHandler : IRequestHandler<DeclineOrderCommand, ErrorOr<OrderDTO>>
     {
+        private IDeclineOrderService declineOrderService;
+        private IOrderStatusChangeService orderStatusChangeService;
+
+        public DeclineOrderHandler(IDeclineOrderService declineOrderService, IOrderStatusChangeService orderStatusChangeService)
+        {
+            this.declineOrderService = declineOrderService;
+            this.orderStatusChangeService = orderStatusChangeService;
+        }
+
         public async Task<ErrorOr<OrderDTO>> Handle(DeclineOrderCommand request, CancellationToken cancellationToken)
         {
             try
@@ -18,6 +27,8 @@ namespace HangryHub.OderService.UseCases.Order.Decline
                     return orderResult.Errors;
                 }
                 var order = orderResult.Value;
+                await orderStatusChangeService.OrderStatusChangeAsync(order.Id, order.OrderState);
+
                 return order.Adapt<OrderDTO>();
             }
             catch (ArgumentException)
