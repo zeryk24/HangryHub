@@ -26,11 +26,25 @@ services:
     ports:
       - "8081:8080"
 
+  hangryhub.restaurantservice.api:
+    image: ${DOCKER_REGISTRY-}hangryhubrestaurantserviceapi
+    build:
+      context: .
+      dockerfile: Backend/HangryHub.RestaurantService/HangryHub.RestaurantService.Host/Dockerfile
+    depends_on:
+     - rabbitmq
+    environment:
+     - RABBITHOST=rabbitmq
+    ports:
+      - "8083:8080"
+
   rabbitmq:
     image: masstransit/rabbitmq:latest
     ports:
       - "5672:5672"
       - "15672:15672"
       - "15692:15692"
+
+
 
 
