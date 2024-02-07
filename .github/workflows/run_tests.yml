@@ -1,0 +1,27 @@
+name: Run Tests
+on:
+  push:
+    branches:
+      - master
+      - delivery_k6
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+
+            - uses: actions/checkout@v3
+            - uses: isbang/compose-action@v1.5.1
+              with:
+                compose-file: "./src/docker-compose.yml"
+            - name: Wait for services to start
+              run: sleep 10s    
+            - name: Run K6 Tests
+              uses: grafana/k6-action@v0.3.1
+              with:
+                filename: ./src/Backend/HangryHub.DeliveryService/HangryHub.DeliveryService.API/script/tests/TestGetAvaiable.js
+                flags: --vus 10 --duration 10s
