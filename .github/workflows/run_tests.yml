@@ -1,0 +1,19 @@
+name: Run Tests
+on:
+  push:
+    branches:
+      - master
+      - delivery_k6
+  pull_request:
+    branches:
+      - master
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+
+            - uses: actions/checkout@v3
+            - uses: isbang/compose-action@v1.5.1
+              with:
+                compose-file: "./src/docker-compose.yml"
+
