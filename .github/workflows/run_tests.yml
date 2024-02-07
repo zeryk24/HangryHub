@@ -4,9 +4,11 @@ on:
     branches:
       - master
       - delivery_k6
+      - dev
   pull_request:
     branches:
       - master
+      - dev
 jobs:
     test:
         runs-on: ubuntu-latest
