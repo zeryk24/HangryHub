@@ -3,7 +3,7 @@ using HangryHub.OrderService.Contracts.Messages;
 using MassTransit;
 using MediatR;
 
-namespace HangryHub.DeliveryService.Application.Delivery.Consumers.OrderUpdateConsumer
+namespace HangryHub.DeliveryService.Application.Delivery.Consumers
 {
     public class OrderUpdateConsumer : IConsumer<OrderStatusUpdate>
     {

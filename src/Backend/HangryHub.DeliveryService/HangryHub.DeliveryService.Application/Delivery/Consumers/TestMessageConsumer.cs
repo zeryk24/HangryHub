@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HangryHub.DeliveryService.Application.Delivery.Consumers.TestMessageConsumer
+namespace HangryHub.DeliveryService.Application.Delivery.Consumers
 {
     public class TestMessageConsumer : IConsumer<DelivetryStateUpdate>
     {

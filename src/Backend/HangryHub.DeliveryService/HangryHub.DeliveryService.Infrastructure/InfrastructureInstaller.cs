@@ -1,5 +1,6 @@
 ﻿using HangryHub.DeliveryService.Application.Common;
-using HangryHub.DeliveryService.Application.Delivery.Consumers.TestMessageConsumer;
+using HangryHub.DeliveryService.Application.Delivery.Commands.UpdateOrderState;
+using HangryHub.DeliveryService.Application.Delivery.Consumers;
 using HangryHub.DeliveryService.Application.Delivery.Queries.GetState;
 using HangryHub.DeliveryService.Application.Delivery.Queries.ListAvaiable;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate;
@@ -8,6 +9,7 @@ using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
 using HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects;
 using HangryHub.DeliveryService.Infrastructure.Common.Data;
 using HangryHub.DeliveryService.Infrastructure.Delivery.Data.QueryService;
+using HangryHub.DeliveryService.Infrastructure.Delivery.Services;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,8 +35,10 @@ namespace HangryHub.DeliveryService.Infrastructure
             );
             
             services.AddTransient<IRepository<Domain.DeliveryAggregate.Delivery>, EFRepository<Domain.DeliveryAggregate.Delivery>>();
+            services.AddTransient<IRepository<Domain.RestaurantAggregate.Restaurant>, EFRepository<Domain.RestaurantAggregate.Restaurant>>();
             services.AddTransient<IListAvaiableQueryService, ListAvaiableQueryService>();
             services.AddTransient<IDeliveryStateService, DeliveryStateService>();
+            services.AddTransient<IOrderStateUpdateService, OrderStateUpdateService>();
 
             var rabbitMqHost = Environment.GetEnvironmentVariable("RABBITHOST");
             if (rabbitMqHost == null)
