@@ -16,7 +16,6 @@ jobs:
             - uses: isbang/compose-action@v1.5.1
               with:
                 compose-file: "./src/docker-compose.yml"
-                compose-flags: "up -d"
             - name: Wait for services to start
               run: sleep 60s    
             - name: Run K6 Tests
