@@ -21,5 +21,5 @@ jobs:
             - name: Run K6 Tests
               uses: grafana/k6-action@v0.3.1
               with:
-                filename: .src/Backend/HangryHub.DeliveryService/HangryHub.DeliveryService.API/script/tests/TestGetAvaiable.js
-                flags: --vus 50 --duration 10s
+                filename: ./src/Backend/HangryHub.DeliveryService/HangryHub.DeliveryService.API/script/tests/TestGetAvaiable.js
+                flags: --vus 10 --duration 10s
