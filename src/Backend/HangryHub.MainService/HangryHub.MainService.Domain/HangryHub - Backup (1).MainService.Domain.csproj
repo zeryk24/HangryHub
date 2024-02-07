@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Ingredient\" />
+    <Folder Include="RestaurantItemIngredient\Entities\" />
+    <Folder Include="RestaurantItemIngredient\ValueObjects\" />
+    <Folder Include="ShoppingCartItemIngredient\Entities\" />
+    <Folder Include="ShoppingCartItemIngredient\ValueObjects\" />
+    <Folder Include="ShoppingCartItem\Entities\" />
+    <Folder Include="ShoppingCartItem\ValueObjects\" />
+    <Folder Include="ShoppingCart\Entities\" />
+    <Folder Include="ShoppingCart\ValueObjects\" />
+    <Folder Include="User\" />
+    <Folder Include="RestaurantItem\Entities\" />
+    <Folder Include="RestaurantItem\ValueObjects\" />
+  </ItemGroup>
+
+</Project>
