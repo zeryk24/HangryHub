@@ -17,9 +17,9 @@ jobs:
               with:
                 compose-file: "./src/docker-compose.yml"
             - name: Wait for services to start
-              run: sleep 60s    
+              run: sleep 10s    
             - name: Run K6 Tests
               uses: grafana/k6-action@v0.3.1
               with:
-                filename: ./Backend/HangryHub.DeliveryService/HangryHub.DeliveryService.API/script/tests/TestGetAvaiable.js
-                flags: --vus 50 --duration 10
+                filename: .src/Backend/HangryHub.DeliveryService/HangryHub.DeliveryService.API/script/tests/TestGetAvaiable.js
+                flags: --vus 50 --duration 10s
