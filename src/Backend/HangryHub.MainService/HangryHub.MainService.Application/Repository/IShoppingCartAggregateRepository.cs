@@ -1,4 +1,5 @@
-﻿using HangryHub.MainService.Domain.ShoppingCartAggregate;
+﻿using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
+using HangryHub.MainService.Domain.ShoppingCartAggregate;
 using HangryHub.MainService.Domain.ShoppingCartAggregate.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,9 @@ namespace HangryHub.MainService.Application.Repository
         public Task<IEnumerable<ShoppingCart>> GetWithDetailsAsync(params ShoppingCartId[] ids);
 
         public Task<ShoppingCart?> GetWithDetailsAsync(ShoppingCartId id);
+
+        public Task<ShoppingCart?> GetActiveCartForUser(CustomerId customerId, RestaurantId restaurantId);
+
+        public Task<ShoppingCart?> CreateActiveCartForUser(CustomerId customerId, RestaurantId restaurantId);
     }
 }

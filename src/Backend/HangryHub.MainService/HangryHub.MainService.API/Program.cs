@@ -1,5 +1,6 @@
 using HangryHub.MainService.Infrastructure;
 using HangryHub.MainService.Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,21 +27,19 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    using var scope = app.Services.CreateScope();
-    var context = scope.ServiceProvider.GetService<MainDBContext>();
+    var context = scope.ServiceProvider.GetService<MainDBContext>() ?? throw new ArgumentException("DI was not able to resolve DBContext. This seems like a mojor issue ... Thank god that we are in the development ;)");
+    
+    context.Database.Migrate();
 
-    if (context == null)
+    if (app.Environment.IsDevelopment())
     {
-        throw new ArgumentException("DI was not able to resolve DBContext. This seems like a mojor issue ... Thank god that we are in the development ;)");
+        await DatabaseSeeder.SeedDatabaseAsync(context);
     }
-
-    await DatabaseSeeder.SeedDatabaseAsync(context);
 }
 
 app.Run();

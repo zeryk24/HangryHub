@@ -1,7 +1,11 @@
 ﻿using HangryHub.MainService.API.Models;
 using HangryHub.MainService.Application.Restaurant.Command.CreateRestaurant;
 using HangryHub.MainService.Application.Restaurant.Query.GetRestaurantList;
+using HangryHub.MainService.Application.ShoppingCartAggregate.Command.AddItemToShoppingCart;
+using HangryHub.MainService.Application.ShoppingCartAggregate.Command.CreateShoppingCart;
+using HangryHub.MainService.Application.ShoppingCartAggregate.Command.SetDeliveryAddress;
 using HangryHub.MainService.Application.ShoppingCartAggregate.Query.GetAllShoppingCarts;
+using HangryHub.MainService.Application.ShoppingCartAggregate.Query.GetUserShoppingCart;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,29 +23,77 @@ namespace HangryHub.MainService.API.Controllers
             _mediator = mediator;
         }
 
-        /*[HttpPost("create")]
-        public async Task<IActionResult> Create(RestaurantCreateModel model)
+        [HttpPost("create-shopping-cart")]
+        public async Task<IActionResult> CreateShoppingCart(CreateShoppingCartCommand model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var restaurant = await _mediator.Send(new CreateRestaurantCommand()
-            {
-                Address = model.Address,
-                Contact = model.Contact,
-                Note = model.Note,
-                Name = model.Name,
-            });
+            var cart = await _mediator.Send(model);
 
-            if (restaurant.IsError)
+            if (cart.IsError)
             {
-                return BadRequest(restaurant);
+                return BadRequest(cart);
             }
 
-            return Ok(restaurant.Value);
-        }*/
+            return Ok(cart.Value);
+        }
+
+        [HttpPost("get-shopping-cart")]
+        public async Task<IActionResult> GetShoppingCart(GetUserShoppingCartQuery model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var cart = await _mediator.Send(model);
+
+            if (cart.IsError)
+            {
+                return BadRequest(cart);
+            }
+
+            return Ok(cart.Value);
+        }
+
+        [HttpPost("add-item-to-shopping-cart")]
+        public async Task<IActionResult> AddItemToShoppingCart(AddItemToShoppingCartCommand model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var cart = await _mediator.Send(model);
+
+            if (cart.IsError)
+            {
+                return BadRequest(cart);
+            }
+
+            return Ok(cart.Value);
+        }
+
+        [HttpPost("set-shopping-cart-delivery-address")]
+        public async Task<IActionResult> AddItemToShoppingCart(SetDeliveryAddressCommand model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var cart = await _mediator.Send(model);
+
+            if (cart.IsError)
+            {
+                return BadRequest(cart);
+            }
+
+            return Ok(cart.Value);
+        }
 
         [HttpGet("list")]
         public async Task<IActionResult> List()
@@ -55,23 +107,5 @@ namespace HangryHub.MainService.API.Controllers
 
             return Ok(restaurants.Value);
         }
-
-        /*[HttpPost("list-specified")]
-        public async Task<IActionResult> ListSpecified(RestaurantFetchListModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var restaurants = await _mediator.Send(new GetRestaurantListQuery() { RestaurantIds = model.RestaurantGuids });
-
-            if (restaurants.IsError)
-            {
-                return BadRequest(restaurants);
-            }
-
-            return Ok(restaurants.Value);
-        }*/
     }
 }

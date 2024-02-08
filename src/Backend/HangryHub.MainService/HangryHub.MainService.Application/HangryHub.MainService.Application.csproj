@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Order\Consumers\" />
-    <Folder Include="ShoppingCartAggregate\Command\" />
   </ItemGroup>
 
 </Project>

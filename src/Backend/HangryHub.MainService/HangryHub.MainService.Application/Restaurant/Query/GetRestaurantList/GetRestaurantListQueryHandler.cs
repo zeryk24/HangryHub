@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace HangryHub.MainService.Application.Restaurant.Query.GetRestaurantList
 {
-    public class GetRestaurantListQueryHandler : IRequestHandler<GetRestaurantListQuery, ErrorOr<IEnumerable<RestaurantDto>>>
+    public class GetRestaurantListQueryHandler : IRequestHandler<GetRestaurantListQuery, ErrorOr<IEnumerable<RestaurantListingDto>>>
     {
         private readonly IRestaurantAggregateRepository _restaurantRepository;
 
@@ -22,7 +22,7 @@ namespace HangryHub.MainService.Application.Restaurant.Query.GetRestaurantList
             _restaurantRepository = restaurantRepository;
         }
 
-        public async Task<ErrorOr<IEnumerable<RestaurantDto>>> Handle(GetRestaurantListQuery request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<IEnumerable<RestaurantListingDto>>> Handle(GetRestaurantListQuery request, CancellationToken cancellationToken)
         {
             var restaurant = await _restaurantRepository.GetWithDetailsAsync(request.RestaurantIds.Select(a => new RestaurantId(a)).ToArray());
 
@@ -31,7 +31,7 @@ namespace HangryHub.MainService.Application.Restaurant.Query.GetRestaurantList
                 return Error.NotFound();
             }
 
-            return restaurant.Adapt<List<RestaurantDto>>();
+            return restaurant.Adapt<List<RestaurantListingDto>>();
         }
     }
 }

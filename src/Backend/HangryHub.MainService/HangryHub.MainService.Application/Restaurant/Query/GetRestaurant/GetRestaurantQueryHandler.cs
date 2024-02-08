@@ -17,7 +17,7 @@ namespace HangryHub.MainService.Application.Restaurant.Query.GetRestaurant
 
         public async Task<ErrorOr<RestaurantDto>> Handle(GetRestaurantQuery request, CancellationToken cancellationToken)
         {
-            var restaurant = await _restaurantRepository.GetWithDetailsAsync(request.RestaurantId);
+            var restaurant = await _restaurantRepository.GetWithDetailsAsync(new Domain.RestaurantAggregate.ValueObjects.RestaurantId(request.RestaurantId));
             
             if (restaurant == null)
             {

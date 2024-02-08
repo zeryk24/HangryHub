@@ -1,5 +1,6 @@
 ﻿using HangryHub.MainService.API.Models;
 using HangryHub.MainService.Application.Restaurant.Command.CreateRestaurant;
+using HangryHub.MainService.Application.Restaurant.Query.GetRestaurant;
 using HangryHub.MainService.Application.Restaurant.Query.GetRestaurantList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -54,18 +55,23 @@ namespace HangryHub.MainService.API.Controllers
             return Ok(restaurants.Value);
         }
 
-        /*[HttpGet]
-        public async Task<IActionResult> FetchById()
+        [HttpPost("get-by-id")]
+        public async Task<IActionResult> FetchById(GetRestaurantQuery model)
         {
-            var restaurants = await _mediator.Send(new GetRestaurantListQuery());
-
-            if (restaurants.IsError)
+            if (!ModelState.IsValid)
             {
-                return BadRequest(restaurants);
+                return BadRequest(ModelState);
             }
 
-            return Ok(restaurants.Value);
-        }*/
+            var restaurant = await _mediator.Send(model);
+
+            if (restaurant.IsError)
+            {
+                return BadRequest(restaurant);
+            }
+
+            return Ok(restaurant.Value);
+        }
 
         [HttpPost("list-specified")]
         public async Task<IActionResult> ListSpecified(RestaurantFetchListModel model)

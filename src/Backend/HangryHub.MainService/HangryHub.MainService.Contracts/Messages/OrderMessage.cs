@@ -34,6 +34,7 @@ namespace HangryHub.MainService.Contracts.Messages
      */
     public record OrderMessage
     {
+        public required Guid OrderId { get; set; }
         public required Guid UserId { get; set; }
         public required Guid RestaurantId { get; set; }
         public required RestaurantDataMessage RestaurantData { get; set; }

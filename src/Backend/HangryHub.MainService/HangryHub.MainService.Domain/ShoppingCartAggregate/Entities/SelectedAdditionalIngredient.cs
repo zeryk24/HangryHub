@@ -10,14 +10,14 @@ namespace HangryHub.MainService.Domain.ShoppingCartAggregate.Entities
 {
     public class SelectedAdditionalIngredient : Entity<SelectedAdditionalIngredientId>
     {
-        public required ShoppingCartItemId ShoppingCartItemId { get; set; }
+        public ShoppingCartItemId ShoppingCartItemId { get; set; }
 
         // do not reference this as an Object. It would go against DDD/CA
-        public required AdditionalIngredientId AdditionalIngredientId { get; set; }
+        public AdditionalIngredientId AdditionalIngredientId { get; set; }
 
-        public required string Name { get; set; }
-        public required int Quantity { get; set; }
-        public required decimal Price { get; set; }
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
 
         private SelectedAdditionalIngredient() { }
 
