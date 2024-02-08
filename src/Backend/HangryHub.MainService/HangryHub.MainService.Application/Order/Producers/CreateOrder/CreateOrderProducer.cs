@@ -50,6 +50,7 @@ namespace HangryHub.MainService.Application.Order.Producers.CreateOrder
 
             await _publishEndpoint.Publish(new OrderMessage()
             {
+                OrderId = shoppingCartId.Value,
                 UserId = shoppingCart.CustomerId.Value,
                 RestaurantId = shoppingCart.RestaurantId.Value,
                 RestaurantData = restaurantData,
@@ -59,6 +60,10 @@ namespace HangryHub.MainService.Application.Order.Producers.CreateOrder
                 Coupons = new(),
                 Subtotal = subtotal,
             });
+
+            shoppingCart.IsActive = false;
+            _shoppingCartAggregateRepository.Update(shoppingCart);
+            await _shoppingCartAggregateRepository.SaveChangesAsync();
         }
 
         private DeliveryDataMessage MapDeliveryData(ShoppingCart shoppingCart)

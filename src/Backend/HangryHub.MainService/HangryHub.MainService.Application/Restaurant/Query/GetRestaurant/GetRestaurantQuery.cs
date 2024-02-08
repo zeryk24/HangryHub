@@ -7,6 +7,6 @@ namespace HangryHub.MainService.Application.Restaurant.Query.GetRestaurant
 {
     public class GetRestaurantQuery : IRequest<ErrorOr<RestaurantDto>>
     {
-        public required RestaurantId RestaurantId { get; set; }
+        public required Guid RestaurantId { get; set; }
     }
 }

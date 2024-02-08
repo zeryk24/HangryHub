@@ -13,7 +13,7 @@ namespace HangryHub.MainService.Application.ShoppingCartAggregate.Query.GetAllSh
 {
     public class GetAllShoppingCartsQueryHandler : IRequestHandler<GetAllShoppingCartsQuery, ErrorOr<List<ShoppingCartDto>>>
     {
-        private readonly IShoppingCartAggregateRepository _repository; // Assuming you have this interface
+        private readonly IShoppingCartAggregateRepository _repository;
 
         public GetAllShoppingCartsQueryHandler(IShoppingCartAggregateRepository repository)
         {
@@ -27,5 +27,4 @@ namespace HangryHub.MainService.Application.ShoppingCartAggregate.Query.GetAllSh
             return dto;
         }
     }
-
 }

@@ -5,7 +5,7 @@ using MediatR;
 
 namespace HangryHub.MainService.Application.Restaurant.Query.GetRestaurantList
 {
-    public class GetRestaurantListQuery : IRequest<ErrorOr<IEnumerable<RestaurantDto>>>
+    public class GetRestaurantListQuery : IRequest<ErrorOr<IEnumerable<RestaurantListingDto>>>
     {
         public IEnumerable<Guid> RestaurantIds { get; set; } = new List<Guid>();
     }

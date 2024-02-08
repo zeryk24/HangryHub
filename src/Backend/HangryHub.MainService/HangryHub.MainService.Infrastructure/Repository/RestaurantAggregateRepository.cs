@@ -1,5 +1,6 @@
 ﻿using HangryHub.MainService.Application.Repository;
 using HangryHub.MainService.Domain.RestaurantAggregate;
+using HangryHub.MainService.Domain.RestaurantAggregate.Entities;
 using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -50,6 +51,23 @@ namespace HangryHub.MainService.Infrastructure.Repository
                 .Include(a => a.Items)
                 .ThenInclude(item => item.AdditionalIngredients)
                 .Include(a => a.AvailableCoupons);
+        }
+
+        public async Task<IEnumerable<RestaurantItem>> GetrRestaurantItemWithDetailsAsync(params RestaurantItemId[] ids)
+        {
+            return await Context.RestaurantItems
+                .Include(item => item.Ingredients)
+                .Include(item => item.AdditionalIngredients)
+                .Where(a => ids.Contains(a.Id))
+                .ToListAsync();
+        }
+
+        public async Task<RestaurantItem?> GetrRestaurantItemWithDetailsAsync(RestaurantItemId id)
+        {
+            return await Context.RestaurantItems
+                .Include(item => item.Ingredients)
+                .Include(item => item.AdditionalIngredients)
+                .FirstOrDefaultAsync(a => id == a.Id);
         }
     }
 }

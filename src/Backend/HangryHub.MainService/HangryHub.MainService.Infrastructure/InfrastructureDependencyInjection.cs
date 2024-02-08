@@ -2,6 +2,7 @@
 using HangryHub.MainService.Application.Order.Producers.CreateOrder;
 using HangryHub.MainService.Application.Repository;
 using HangryHub.MainService.Application.Services;
+using HangryHub.MainService.Domain.ShoppingCartAggregate.Entities;
 using HangryHub.MainService.Infrastructure.Repository;
 using HangryHub.MainService.Infrastructure.Services;
 using MassTransit;
@@ -35,6 +36,9 @@ namespace HangryHub.MainService.Infrastructure
 
             services.AddScoped<IRepository<Domain.RestaurantAggregate.Restaurant>, EFRepository<Domain.RestaurantAggregate.Restaurant>>();
             services.AddScoped<IRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>, EFRepository<Domain.RestaurantAggregate.Entities.RestaurantItem>>();
+            services.AddScoped<IRepository<DeliveryData>, EFRepository<DeliveryData>>();
+            services.AddScoped<IRepository<ShoppingCartItem>, EFRepository<ShoppingCartItem>>();
+
             services.AddScoped<IRestaurantAggregateRepository, RestaurantAggregateRepository>();
             services.AddScoped<IShoppingCartAggregateRepository, ShoppingCartAggregateRepository>();
             services.AddScoped<IShoppingCartCalculationService, ShoppingCartCalculationService>();
