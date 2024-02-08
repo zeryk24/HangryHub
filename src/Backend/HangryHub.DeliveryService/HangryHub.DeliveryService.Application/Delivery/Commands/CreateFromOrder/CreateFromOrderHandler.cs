@@ -35,7 +35,7 @@ namespace HangryHub.DeliveryService.Application.Delivery.Commands.Complete
                     new RestaurantLocation(order_m.RestaurantData.Address, order_m.RestaurantData.Note),
                     restaurantName
                 ),
-                new Order(new OrderId(Guid.NewGuid()), OrderState.JustCreated), // TODO: order id!
+                new Order(new OrderId(order_m.OrderId), OrderState.JustCreated),
                 new Customer(
                         new CustomerId(order_m.UserId),
                         new CustomerContact(order_m.DeliveryData.UserContact,""),
