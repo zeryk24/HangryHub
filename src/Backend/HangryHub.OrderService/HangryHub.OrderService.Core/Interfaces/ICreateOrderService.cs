@@ -2,6 +2,6 @@
 {
     public interface ICreateOrderService
     {
-        Task<OrderAggregate.Order> CreateOrderAsync(double euroPrice);
+        Task<OrderAggregate.Order> CreateOrderAsync(Core.OrderAggregate.Order order);
     }
 }
