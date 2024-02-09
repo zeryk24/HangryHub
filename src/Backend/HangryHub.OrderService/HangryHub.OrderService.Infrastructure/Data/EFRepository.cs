@@ -33,7 +33,7 @@ namespace HangryHub.OrderService.Infrastructure.Data
             return await set.AsNoTracking().ToListAsync();
         }
 
-        public async Task<TAggregate?> GetByIdAsync(object id)
+        public virtual async Task<TAggregate?> GetByIdAsync(object id)
         {
             return await aggregateSet.FindAsync(id);
         }
