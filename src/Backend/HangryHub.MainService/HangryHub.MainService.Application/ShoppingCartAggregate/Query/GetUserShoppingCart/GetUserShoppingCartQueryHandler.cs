@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
+using HangryHub.MainService.Application.DTOs.ShoppingCartAggregate;
 using HangryHub.MainService.Application.Repository;
-using HangryHub.MainService.Application.Restaurant.DTOs.ShoppingCartAggregate;
 using HangryHub.MainService.Application.ShoppingCartAggregate.Query.GetAllShoppingCarts;
 using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
 using HangryHub.MainService.Domain.ShoppingCartAggregate.ValueObjects;

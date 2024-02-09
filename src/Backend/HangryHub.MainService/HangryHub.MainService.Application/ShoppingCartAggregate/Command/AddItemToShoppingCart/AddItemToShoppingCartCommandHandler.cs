@@ -1,19 +1,13 @@
 ﻿using ErrorOr;
+using HangryHub.MainService.Application.DTOs.ShoppingCartAggregate;
 using HangryHub.MainService.Application.Repository;
-using HangryHub.MainService.Application.Restaurant.DTOs.RestaurantAggregate;
-using HangryHub.MainService.Application.Restaurant.DTOs.ShoppingCartAggregate;
-using HangryHub.MainService.Application.ShoppingCartAggregate.Command.SetDeliveryAddress;
 using HangryHub.MainService.Domain.RestaurantAggregate.Entities;
 using HangryHub.MainService.Domain.RestaurantAggregate.ValueObjects;
+using HangryHub.MainService.Domain.ShoppingCartAggregate;
 using HangryHub.MainService.Domain.ShoppingCartAggregate.Entities;
 using HangryHub.MainService.Domain.ShoppingCartAggregate.ValueObjects;
 using Mapster;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace HangryHub.MainService.Application.ShoppingCartAggregate.Command.AddItemToShoppingCart
@@ -51,9 +45,19 @@ namespace HangryHub.MainService.Application.ShoppingCartAggregate.Command.AddIte
             }
 
             var shoppingCartItem = restaurantItem.Adapt<ShoppingCartItem>();
+            shoppingCartItem.ShoppingCartId = shoppingCartId;
+            
+            AddAdditionalIngredients(request, restaurantItem, shoppingCartItem);
+            AddToCart(shoppingCart, shoppingCartItem);
 
-            var restaurantItemQuantity = request.Item.RestaurantItemQuantity;
+            _shoppingCartItemRepository.Insert(shoppingCartItem);
+            await _shoppingCartItemRepository.SaveChangesAsync();
 
+            return shoppingCart.Adapt<ShoppingCartDto>();
+        }
+
+        private static void AddAdditionalIngredients(AddItemToShoppingCartCommand request, RestaurantItem restaurantItem, ShoppingCartItem shoppingCartItem)
+        {
             var additionalIngredients = request.Item.AdditionalIngredients
                 .GroupBy(a => a.AdditionalIngredientId)
                 .ToDictionary(x => x.Key, y => y.Select(a => a.AdditionalIngredientQuantity).Sum());
@@ -62,11 +66,12 @@ namespace HangryHub.MainService.Application.ShoppingCartAggregate.Command.AddIte
                 .Where(a => additionalIngredients.Select(a => a.Key).Contains(a.Id.Value))
                 .ToList();
 
-            var saiList = new List<SelectedAdditionalIngredient>();
+            var saiList = new HashSet<SelectedAdditionalIngredient>();
 
             foreach (var additionalIngredient in existingAdditionalIng)
             {
                 var selectedAdditionalIngredient = additionalIngredient.Adapt<SelectedAdditionalIngredient>();
+                selectedAdditionalIngredient.ShoppingCartItemId = shoppingCartItem.Id;
                 selectedAdditionalIngredient.Quantity = additionalIngredients[additionalIngredient.Id.Value];
 
                 shoppingCartItem.Price += (additionalIngredient.Price * selectedAdditionalIngredient.Quantity);
@@ -74,11 +79,22 @@ namespace HangryHub.MainService.Application.ShoppingCartAggregate.Command.AddIte
             }
 
             shoppingCartItem.SelectedAdditionalIngredients = saiList;
+        }
 
-            _shoppingCartItemRepository.Insert(shoppingCartItem);
-            await _shoppingCartItemRepository.SaveChangesAsync();
+        private static void AddToCart(ShoppingCart shoppingCart, ShoppingCartItem shoppingCartItem)
+        {
+            var inCartItem = shoppingCart.Items.FirstOrDefault(a => a.Equals(shoppingCartItem));
 
-            return shoppingCart.Adapt<ShoppingCartDto>();
+            if (inCartItem != null)
+            {
+                inCartItem.Quantity += shoppingCartItem.Quantity;
+            }
+            else
+            {
+                var newCartItems = shoppingCart.Items.ToList();
+                newCartItems.Add(shoppingCartItem);
+                shoppingCart.Items = newCartItems;
+            }
         }
     }
 }

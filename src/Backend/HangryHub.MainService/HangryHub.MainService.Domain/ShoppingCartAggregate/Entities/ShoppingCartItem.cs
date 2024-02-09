@@ -29,5 +29,26 @@ namespace HangryHub.MainService.Domain.ShoppingCartAggregate.Entities
         public virtual ShoppingCart? ShoppingCart { get; set; }
 
         public virtual IEnumerable<SelectedAdditionalIngredient> SelectedAdditionalIngredients { get; set; }
+
+        /*public override bool Equals(object? obj)
+        {
+            if (obj is not ShoppingCartItem item)
+            {
+                return false;
+            }
+
+            var left = SelectedAdditionalIngredients.OrderBy(a => a.Name).ToList();
+            var right = item.SelectedAdditionalIngredients.OrderBy(a => a.Name).ToList();
+            var leqr = left.SequenceEqual(right);
+
+            return ShoppingCartId.Value == item.ShoppingCartId.Value &&
+                   RestaurantItemId.Value == item.RestaurantItemId.Value &&
+                   leqr;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), ShoppingCartId, RestaurantItemId, SelectedAdditionalIngredients);
+        }*/
     }
 }

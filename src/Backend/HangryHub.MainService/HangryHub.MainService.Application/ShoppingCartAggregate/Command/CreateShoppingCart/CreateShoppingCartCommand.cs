@@ -1,5 +1,5 @@
 ﻿using ErrorOr;
-using HangryHub.MainService.Application.Restaurant.DTOs.ShoppingCartAggregate;
+using HangryHub.MainService.Application.DTOs.ShoppingCartAggregate;
 using MediatR;
 using System;
 using System.Collections.Generic;

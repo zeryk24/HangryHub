@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HangryHub.MainService.Application.Restaurant.DTOs.ShoppingCartAggregate
+namespace HangryHub.MainService.Application.DTOs.ShoppingCartAggregate
 {
     public class DeliveryDataDto
     {

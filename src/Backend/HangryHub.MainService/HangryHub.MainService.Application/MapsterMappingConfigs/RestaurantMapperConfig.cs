@@ -1,4 +1,4 @@
-﻿using HangryHub.MainService.Application.Restaurant.DTOs.RestaurantAggregate;
+﻿using HangryHub.MainService.Application.DTOs.RestaurantAggregate;
 using HangryHub.MainService.Domain.RestaurantAggregate.Entities;
 using Mapster;
 using System;

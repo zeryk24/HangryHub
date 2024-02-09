@@ -1,5 +1,5 @@
 ﻿using ErrorOr;
-using HangryHub.MainService.Application.Restaurant.DTOs.RestaurantAggregate;
+using HangryHub.MainService.Application.DTOs.RestaurantAggregate;
 using MediatR;
 
 namespace HangryHub.MainService.Application.Restaurant.Command.CreateRestaurant
