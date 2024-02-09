@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HangryHub.MainService.Application.Restaurant.DTOs.ShoppingCartAggregate.Request
+namespace HangryHub.MainService.Application.DTOs.ShoppingCartAggregate.Request
 {
     public class ShoppingCartItemAdditionDTO
     {

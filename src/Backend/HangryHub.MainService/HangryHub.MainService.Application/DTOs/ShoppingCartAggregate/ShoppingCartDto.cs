@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HangryHub.MainService.Application.Restaurant.DTOs.ShoppingCartAggregate
+namespace HangryHub.MainService.Application.DTOs.ShoppingCartAggregate
 {
     public class ShoppingCartDto
     {
@@ -14,7 +14,7 @@ namespace HangryHub.MainService.Application.Restaurant.DTOs.ShoppingCartAggregat
         public required CustomerId CustomerId { get; set; }
         public required RestaurantId RestaurantId { get; set; }
         public DeliveryDataDto? SelectedDeliveryData { get; set; }
-        public required List<ShoppingCartItemDto> Items { get; set; } = new ();
+        public required List<ShoppingCartItemDto> Items { get; set; } = new();
         public required bool IsActive { get; set; }
         public required DateTime CreatedDate { get; set; }
         public required DateTime LastUpdatedDate { get; set; }

@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
+using HangryHub.MainService.Application.DTOs.RestaurantAggregate;
 using HangryHub.MainService.Application.Repository;
-using HangryHub.MainService.Application.Restaurant.DTOs.RestaurantAggregate;
 using Mapster;
 using MediatR;
 

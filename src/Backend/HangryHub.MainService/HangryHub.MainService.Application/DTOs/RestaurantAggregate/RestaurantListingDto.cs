@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HangryHub.MainService.Application.Restaurant.DTOs.RestaurantAggregate
+namespace HangryHub.MainService.Application.DTOs.RestaurantAggregate
 {
-    public class IngredientDto
+    public class RestaurantListingDto
     {
-        public required IngredientId Id { get; set; }
+        public required RestaurantId Id { get; set; }
         public required string Name { get; set; }
+        public required RestaurantDetailDto Detail { get; set; }
     }
 }

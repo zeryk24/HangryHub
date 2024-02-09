@@ -26,5 +26,21 @@ namespace HangryHub.MainService.Domain.ShoppingCartAggregate.Entities
         }
 
         public virtual ShoppingCartItem? ShoppingCartItem { get; set; }
+
+        /*public override bool Equals(object? obj)
+        {
+            if (obj is not SelectedAdditionalIngredient ingredient)
+            {
+                return false;
+            }
+
+            return ShoppingCartItemId.Value == ingredient.ShoppingCartItemId.Value &&
+                   AdditionalIngredientId.Value == ingredient.AdditionalIngredientId.Value;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), ShoppingCartItemId, AdditionalIngredientId);
+        }*/
     }
 }

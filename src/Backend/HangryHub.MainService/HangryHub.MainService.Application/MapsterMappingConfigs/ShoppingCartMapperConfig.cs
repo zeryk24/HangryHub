@@ -1,14 +1,8 @@
-﻿using HangryHub.MainService.Application.Restaurant.DTOs.RestaurantAggregate;
-using HangryHub.MainService.Application.Restaurant.DTOs.ShoppingCartAggregate;
-using HangryHub.MainService.Domain.RestaurantAggregate.Entities;
+﻿using HangryHub.MainService.Domain.RestaurantAggregate.Entities;
 using HangryHub.MainService.Domain.ShoppingCartAggregate.Entities;
 using HangryHub.MainService.Domain.ShoppingCartAggregate;
 using Mapster;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HangryHub.MainService.Application.DTOs.ShoppingCartAggregate;
 
 namespace HangryHub.MainService.Application.MapsterMappingConfigs
 {
@@ -29,6 +23,7 @@ namespace HangryHub.MainService.Application.MapsterMappingConfigs
 
             TypeAdapterConfig<AdditionalIngredient, SelectedAdditionalIngredient>.NewConfig()
                 .ConstructUsing(src => new SelectedAdditionalIngredient(new(Guid.NewGuid())))
+                .Ignore(dest => dest.Id)
                 .Map(dest => dest.AdditionalIngredientId, src => src.Id)
                 .Map(dest => dest.Name, src => src.Name)
                 .Map(dest => dest.Price, src => src.Price)
@@ -36,12 +31,13 @@ namespace HangryHub.MainService.Application.MapsterMappingConfigs
 
             TypeAdapterConfig<RestaurantItem, ShoppingCartItem>.NewConfig()
                 .ConstructUsing(src => new ShoppingCartItem(new(Guid.NewGuid())))
+                .Ignore(dest => dest.Id)
                 .Map(dest => dest.RestaurantItemId, src => src.Id)
                 .Map(dest => dest.ItemName, src => src.Name)
                 .Map(dest => dest.ItemDescription, src => src.Description)
                 .Map(dest => dest.Price, src => src.Price + src.AdditionalIngredients.Sum(ai => ai.Price))
                 .Map(dest => dest.Quantity, src => 1)
-                .Map(dest => dest.SelectedAdditionalIngredients, src => src.AdditionalIngredients.Adapt<IEnumerable<SelectedAdditionalIngredient>>());
+                /*.Map(dest => dest.SelectedAdditionalIngredients, src => src.AdditionalIngredients.Adapt<IEnumerable<SelectedAdditionalIngredient>>())*/;
         }
     }
 }
