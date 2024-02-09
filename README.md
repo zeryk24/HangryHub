@@ -1,3 +1,5 @@
+# HangryHub - food delivery system
+## Infrastructure
 - HangryHub obsahuje několik klientů a byl navržen jako systém s microservisní architekturou
 	- tři klientské aplikace:
 		- customer client - stará se o objednávání jídel, pro koncové zákazníky
