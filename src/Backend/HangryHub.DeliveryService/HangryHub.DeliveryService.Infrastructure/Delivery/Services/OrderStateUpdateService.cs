@@ -1,10 +1,13 @@
-﻿using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
+﻿using HangryHub.DeliveryService.Application.Delivery.Commands.UpdateOrderState;
+using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
 using HangryHub.DeliveryService.Infrastructure.Common.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace HangryHub.DeliveryService.Infrastructure.Delivery.Services
 {
-    public class OrderStateUpdateService
+
+
+    public class OrderStateUpdateService : IOrderStateUpdateService
     {
         DeliveryServiceContext _context;
 
@@ -26,7 +29,7 @@ namespace HangryHub.DeliveryService.Infrastructure.Delivery.Services
             var delivery = _context.Deliveries.Find(deliveryId);
             if (delivery == null)
             {
-                   throw new ArgumentException("Delivery not found");
+                throw new ArgumentException("Delivery not found");
             }
             var new_order = new Domain.DeliveryAggregate.Entities.Order(
                 delivery.Order.Id,

@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HangryHub.MainService\HangryHub.MainService.Contracts\HangryHub.MainService.Contracts.csproj" />
     <ProjectReference Include="..\..\HangryHub.OrderService\HangryHub.OrderService.Contracts\HangryHub.OrderService.Contracts.csproj" />
+    <ProjectReference Include="..\..\HangryHub.RestaurantService\HangryHub.RestaurantService.Contracts\HangryHub.RestaurantService.Contracts.csproj" />
     <ProjectReference Include="..\HangryHub.DeliveryService.Domain\HangryHub.DeliveryService.Domain.csproj" />
   </ItemGroup>
 

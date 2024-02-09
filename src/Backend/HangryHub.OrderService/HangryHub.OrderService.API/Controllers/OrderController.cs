@@ -38,11 +38,11 @@ namespace HangryHub.OrderService.API.Controllers
             return Ok(result.Value);
         }
 
-        [HttpPost]
-        public async Task<OrderDTO> Create(double price)
-        {
-            return await mediator.Send(new CreateOrderCommand(price));
-        }
+        //[HttpPost]
+        //public async Task<OrderDTO> Create(double price)
+        //{
+        //    return await mediator.Send(new CreateOrderCommand(price));
+        //}
 
         [HttpPut("Accept")]
         public async Task<ActionResult<OrderDTO>> Accept(Guid id)

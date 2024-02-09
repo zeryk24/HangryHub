@@ -1,7 +1,4 @@
-﻿using HangryHub.DeliveryService.Application.Common;
-using HangryHub.DeliveryService.Domain.DeliveryAggregate.Entities;
-using HangryHub.DeliveryService.Domain.DeliveryAggregate.Enums;
-using HangryHub.DeliveryService.Domain.DeliveryAggregate.ValueObjects;
+﻿using HangryHub.DeliveryService.Application.Delivery.Commands.UpdateOrderState;
 using MediatR;
 
 namespace HangryHub.DeliveryService.Application.Delivery.Commands.Complete
@@ -9,17 +6,21 @@ namespace HangryHub.DeliveryService.Application.Delivery.Commands.Complete
     public class UpdateOrderStateHandler : IRequestHandler<UpdateOrderStateCommand, bool>
     {
 
-        IRepository<Domain.DeliveryAggregate.Delivery> repository;
-        public UpdateOrderStateHandler(IRepository<Domain.DeliveryAggregate.Delivery> repository)
+        IOrderStateUpdateService orderStateUpdateService;
+        public UpdateOrderStateHandler(IOrderStateUpdateService orderStateUpdateService)
         {
-            this.repository = repository;
+            this.orderStateUpdateService = orderStateUpdateService;
         }
 
         public async Task<bool> Handle(UpdateOrderStateCommand request, CancellationToken cancellationToken)
         {
-            
 
+            Guid? deliveryId = await orderStateUpdateService.FindDeliveryWithOrder(request.OrderId);
+            if (deliveryId == null) { return false; }
+
+            await orderStateUpdateService.MakeDeliveryAvaiable((Guid)deliveryId);
             return true;
+           
         }
     }
 }

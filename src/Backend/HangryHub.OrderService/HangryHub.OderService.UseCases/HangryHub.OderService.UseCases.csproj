@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HangryHub.MainService\HangryHub.MainService.Contracts\HangryHub.MainService.Contracts.csproj" />
     <ProjectReference Include="..\HangryHub.OrderService.Core\HangryHub.OrderService.Core.csproj" />
   </ItemGroup>
 

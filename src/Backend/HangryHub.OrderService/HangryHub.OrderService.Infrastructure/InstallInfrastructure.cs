@@ -1,4 +1,5 @@
-﻿using HangryHub.OrderService.Core.Interfaces;
+﻿using HangryHub.OderService.UseCases.Order.Create;
+using HangryHub.OrderService.Core.Interfaces;
 using HangryHub.OrderService.Core.OrderAggregate;
 using HangryHub.OrderService.Core.OrderAggregate.Entities.CouponEntity;
 using HangryHub.OrderService.Core.OrderAggregate.ValueObjects;
@@ -43,7 +44,8 @@ namespace HangryHub.OrderService.Infrastructure
             // rabbit mq
             services.AddMassTransit(x =>
             {
-                // x.AddConumer(...) 
+                // x.AddConumer(...)
+                x.AddConsumer<CreateOrderMessageConsumer>();
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(rabbitMqHost, h => {
