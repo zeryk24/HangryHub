@@ -15,8 +15,9 @@ namespace HangryHub.OrderService.Core.OrderAggregate
         public Coupon? Coupon { get; private set; }
         public List<OrderItem> Items { get; private set; }
 
-        public Order(Price euro, Coupon? coupon, UserId userId, List<OrderItem> items, RestaurantId restaurantId)
+        public Order(Guid Id, Price euro, Coupon? coupon, UserId userId, List<OrderItem> items, RestaurantId restaurantId)
         {
+            this.Id = Id;
             PriceEuro = euro;
             OrderState = OrderState.NotAccepted;
             Coupon = coupon;

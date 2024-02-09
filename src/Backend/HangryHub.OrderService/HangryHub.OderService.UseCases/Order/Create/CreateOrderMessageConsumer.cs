@@ -27,6 +27,7 @@ namespace HangryHub.OderService.UseCases.Order.Create
             }
             var orderDTO = new OrderDTO()
             {
+                Id = message.OrderId,
                 PriceEuro = new PriceDTO() { Euro = Decimal.ToDouble(message.Subtotal) },
                 OrderState = OrderStatusDTO.NotAccepted,
                 Coupon = null,
@@ -34,7 +35,7 @@ namespace HangryHub.OderService.UseCases.Order.Create
                 RestaurantId = new RestaurantIdDTO() { Id = message.RestaurantId },
                 Items = MapOrderItems(message),
             };
-            var finalOrder = await mediator.Send(new CreateOrderCommand(orderDTO));
+            await mediator.Send(new CreateOrderCommand(orderDTO));
         }
 
         private List<OrderItemDTO> MapOrderItems(OrderMessage message)

@@ -16,6 +16,7 @@ namespace HangryHub.OderService.UseCases.Order.Create
         private OrderService.Core.OrderAggregate.Order MapToAggregate(OrderDTO orderDTO)
         {
             return new OrderService.Core.OrderAggregate.Order(
+                orderDTO.Id,
                 new OrderService.Core.OrderAggregate.ValueObjects.Price(orderDTO.PriceEuro.Euro),
                 orderDTO.Coupon == null ? null : new OrderService.Core.OrderAggregate.Entities.CouponEntity.Coupon(
                     new OrderService.Core.OrderAggregate.Entities.CouponEntity.ValueObjects.CouponName(orderDTO.Coupon.Name.Name),

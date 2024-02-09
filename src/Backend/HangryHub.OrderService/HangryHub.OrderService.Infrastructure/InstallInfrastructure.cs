@@ -66,9 +66,11 @@ namespace HangryHub.OrderService.Infrastructure
                 return;
             }
 
+            if (isDeveloplment || true) context.Database.EnsureDeleted();
+
             context.Database.Migrate();
 
-            if (isDeveloplment)
+            if (isDeveloplment || true)
             {
                 var coupon1 = new Coupon(
                     new Core.OrderAggregate.Entities.CouponEntity.ValueObjects.CouponName("Black friday"),
@@ -92,6 +94,19 @@ namespace HangryHub.OrderService.Infrastructure
                 };
 
                 var order1 = new Order(
+                    Guid.NewGuid(),
+                    new Price(10),
+                    new Coupon(
+                    new Core.OrderAggregate.Entities.CouponEntity.ValueObjects.CouponName("Black friday"),
+                    new Core.OrderAggregate.Entities.CouponEntity.ValueObjects.CouponPrice(5)
+                    ),
+                    new UserId(Guid.NewGuid()),
+                    items,
+                    new RestaurantId(Guid.Parse("e728e5ea-bf6f-4600-9d59-a286b7be767c"))
+                    );
+
+                var order2 = new Order(
+                    Guid.Parse("7728e5ea-bf6f-4600-9d59-a286b7be767c"),
                     new Price(10),
                     new Coupon(
                     new Core.OrderAggregate.Entities.CouponEntity.ValueObjects.CouponName("Black friday"),
@@ -103,6 +118,7 @@ namespace HangryHub.OrderService.Infrastructure
                     );
 
                 context.Add(order1);
+                context.Add(order2);
                 context.SaveChanges();
             }
         }

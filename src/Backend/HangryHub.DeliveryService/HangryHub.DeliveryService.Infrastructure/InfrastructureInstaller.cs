@@ -68,11 +68,11 @@ namespace HangryHub.DeliveryService.Infrastructure
         {
             if (context == null) return;
 
-            if (isDeveloplment) context.Database.EnsureDeleted();
+            if (isDeveloplment || true) context.Database.EnsureDeleted();
 
             context.Database.Migrate();
 
-            if (isDeveloplment)
+            if (isDeveloplment || true)
             {
                 context.Add(
                             new Domain.DeliveryAggregate.Delivery(
@@ -96,6 +96,29 @@ namespace HangryHub.DeliveryService.Infrastructure
                             DeliveryState.NotAsigned)
 
                     );
+
+                context.Add(
+                         new Domain.DeliveryAggregate.Delivery(
+                         Guid.NewGuid(),
+                         new RestaurantDeliveryInfo(
+                             new RestaurantId(Guid.NewGuid()),
+                             new RestaurantContact("777666777", "777666445"),
+                             new RestaurantLocation("Ulice 1", "Az v druhem patre!"),
+                             "Bob's Burgers"
+                         ),
+                         new Order(
+                             new OrderId(Guid.Parse("7728e5ea-bf6f-4600-9d59-a286b7be767c")),
+                             OrderState.JustCreated
+                         ),
+                         new Customer(
+                             new CustomerId(Guid.NewGuid()),
+                             new CustomerContact("555666555", "777888555"),
+                             new CustomerDeliveryLocation("Daleka ulice 35", "Nechte jidlo pred domem", Domain.DeliveryAggregate.Enums.CustomerLocationType.Home)
+                         ),
+                         null,
+                         DeliveryState.NotAvailable)
+
+                 );
                 context.SaveChanges();
             }
         }
